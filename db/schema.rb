@@ -11,7 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112155815) do
+ActiveRecord::Schema.define(version: 20150226204813) do
+
+  create_table "people", force: true do |t|
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "home_number"
+    t.string   "cel_number"
+    t.string   "address"
+    t.string   "id_type"
+    t.string   "id_number"
+    t.date     "birth_day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.date     "start_date"
+    t.date     "finish_date"
+    t.string   "website"
+    t.string   "github"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.string   "origin"
+    t.string   "description"
+    t.string   "documentation"
+    t.date     "release_date"
+    t.string   "current_version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
