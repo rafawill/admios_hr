@@ -1,64 +1,29 @@
-<div class="authform_large">
-   <%= form_for(:person, :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
 
 
-   
-    <div class="col-md-12">
-    	<%= devise_error_messages! %>
-       <h3>Create a New Developer</h3>
-    </div>
+
+<div class="container">
   <div class="row">
-<div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :name %>
-            <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
-          </div>
+    <h3>Developers</h3>
+     <h6><%= link_to(" + Create New Developer", new_developer_path, :method => :get, :class => 'button-xs') %></h6>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @developers.each do |developer| %>
+            <tr>
+              <td>
+  					<%= developer.name.to_s + ' ' + developer.last_name.to_s %> 
+				</td>
 
-          <div class="form-group">
-            <%= f.label :address %>
-            <%= f.text_area :address, :rows => 3,  class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :home_number %>
-            <%= f.text_field :home_number, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :cel_number %>
-            <%= f.text_field :cel_number, class: 'form-control' %>
-          </div>
-    </div>
-    <div class="col-md-6">
-          <div class="form-group">
-              <%= f.label :Type_Of_Identification %> </br>
-              <%= f.select(:id_type, Person.id_types.keys.map {|id| [id.titleize,id]} )  %>
-          </div> 
-          <div class="form-group">
-            <%= f.label :Identification_Number %>
-            <%= f.text_field :id_number, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :Birth_Day %>
-            <%= f.date_field :birth_day, class: 'form-control' %>
-          </div>
+				<td>
+				  <%= link_to("Edit", edit_developer_path(developer), :method => :get, :class => 'button-xs') %>
+				  <%= link_to("Delete", developer_path(developer), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+				</td>
 
-
-
-
-
-
-        
-    </div>
-    <div class="col-md-12">
-      <%= f.submit 'Sign up', :class => 'btn btn-primary btn-lg btn-block' %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
-  <% end %>
 </div>
+

@@ -1,8 +1,29 @@
 class DeveloperController < ApplicationController
 	before_filter :authenticate_user!
+ 
+
   def index
   	 @developers = Person.all
   end
+
+
+  def edit
+  	 @person = Person.find(params[:id])
+  end
+
+
+
+  def update
+  	 @developer = Person.find(params[:id])
+    if @developer.update_attributes(secure_params)
+      redirect_to developer_index_path, :notice => "Developer updated."
+    else
+      redirect_to developer_path, :alert => "Unable to update Developer."
+    end
+  end
+
+
+
 
   def show
 	@developer = Person.find(params[:id])
@@ -11,34 +32,34 @@ class DeveloperController < ApplicationController
       end
   end
 
-  def create
-  #	binding.pry
+
+  def destroy
+	person = Person.find(params[:id])
+	person.destroy
+	redirect_to developer_index_path, :notice => "Developer deleted."
+  end
 
 
-      # if resource.active_for_authentication?
-      #   set_flash_message :notice, :signed_up if is_flashing_format?
-      #   sign_up(resource_name, resource)
-      #   respond_with resource, location: after_sign_up_path_for(resource)
-      # else
-      #   set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-      #   expire_data_after_sign_in!
-      #   respond_with resource, location: after_inactive_sign_up_path_for(resource)
-      # end
 
-
-	  @developer = Person.new(secure_params)
-	  if @developer.save
-	    flash[:success] = "Developer Created!"
-	    redirect_to root_path
-	  else
-	  	#render :action => :index
-	    redirect_to developer_index_path, :alert => "Unable to create Developer."
-	  end
+  def new
 
   end
 
-    def secure_params
-    params.require(:person).permit(:name, )
+
+  def create
+	  @developer = Person.new(secure_params)
+	  if @developer.save
+	    flash[:success] = "Developer Created!"
+	    redirect_to developer_index_path
+	  else
+	    redirect_to new_developer_path, :alert => "Unable to create Developer."
+	  end
+  end
+
+
+
+  def secure_params
+    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :natioanlity ,:id_type, :id_number, :birth_day, :nationality)
   end
 
 

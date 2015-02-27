@@ -7,6 +7,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :home_number
       t.string :cel_number
       t.string :address
+      t.string :nationality
       t.string :id_type
       t.string :id_number
       t.date :birth_day
