@@ -1,0 +1,50 @@
+<div class="authform_large">
+   <%= form_for(:skill, url: skill_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
+
+
+   
+    <div class="col-md-12">
+    	<%= devise_error_messages! %>
+       <h3>Create a New Skill</h3>
+    </div>
+  <div class="row">
+<div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+              <%= f.label :Skill_Type %> </br>
+              <%= f.select(:skill_type, Skill.skill_types.keys.map {|id| [id.titleize,id]} )  %>
+          </div> 
+          <div class="form-group">
+              <%= f.label :Origin %> </br>
+              <%= f.select(:origin, Skill.origins.keys.map {|id| [id.titleize,id]} )  %>
+          </div> 
+           <div class="form-group">
+            <%= f.label :Documentation_URL %>
+            <%= f.url_field :documentation, class: 'form-control' %>
+          </div>
+         
+    </div>
+    <div class="col-md-6">
+           <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_area :description, rows: 3, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Current_Version %>
+            <%= f.text_field :current_version, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :Release_Date %>
+            <%= f.date_field :release_date, class: 'form-control' %>
+          </div>
+ 
+    </div>
+    <div class="col-md-12">
+      <%= f.submit 'Create Skill', :class => 'btn btn-primary btn-lg btn-block' %>
+    </div>
+  </div>
+  <% end %>
+</div>

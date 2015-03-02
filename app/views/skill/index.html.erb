@@ -1,0 +1,29 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <h3>Skills</h3>
+     <h6><%= link_to(" + Create New Skill", new_skill_path, :method => :get, :class => 'button-xs') %></h6>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @skills.each do |skill| %>
+            <tr>
+              <td>
+  					<%= skill.name.to_s %> 
+				</td>
+
+				<td>
+				  <%= link_to("Edit", edit_skill_path(skill), :method => :get, :class => 'button-xs') %>
+				  <%= link_to("Delete", skill_path(skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+				</td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

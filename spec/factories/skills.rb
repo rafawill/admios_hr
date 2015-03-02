@@ -5,7 +5,7 @@ type ""
 origin "MyString"
 description "MyString"
 documentation "MyString"
-release_date "2015-02-26"
+release_date "2015-03-02"
 current_version "MyString"
   end
 

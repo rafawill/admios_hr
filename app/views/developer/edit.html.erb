@@ -52,7 +52,23 @@
             <%= f.date_field :birth_day, class: 'form-control' %>
           </div>
 
+   <fieldset>
 
+       <% unless @person.image_file_name.blank? %>
+          <div class="form-group">
+              You have already a Image:
+              <br>
+             <%= image_tag @person.image.url(:thumb) %>
+              <br>
+              If you want another:
+          </div>
+        <% end %>
+
+          <div class="form-group">
+            <%= f.label :Developer_Image %>
+            <%=  f.file_field :image %>
+        </div>
+      </fieldset>
 
 
 

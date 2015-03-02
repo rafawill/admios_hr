@@ -1,0 +1,29 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <h3>Skills</h3>
+     <h6><%= link_to(" + Create New Project", new_project_path, :method => :get, :class => 'button-xs') %></h6>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td>
+  					<%= project.name.to_s %> 
+				</td>
+
+				<td>
+				  <%= link_to("Edit", edit_project_path(project), :method => :get, :class => 'button-xs') %>
+				  <%= link_to("Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+				</td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
