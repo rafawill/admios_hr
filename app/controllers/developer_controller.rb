@@ -49,8 +49,7 @@ class DeveloperController < ApplicationController
   def create
 	  @developer = Person.new(secure_params)
 	  if @developer.save
-	    flash[:success] = "Developer Created!"
-	    redirect_to developer_index_path
+	    redirect_to developer_index_path , :notice => "Developer Created!"
 	  else
 	    redirect_to new_developer_path, :alert => "Unable to create Developer."
 	  end

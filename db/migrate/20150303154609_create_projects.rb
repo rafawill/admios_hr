@@ -7,6 +7,7 @@ class CreateProjects < ActiveRecord::Migration
       t.date :finish_date
       t.string :website
       t.string :github
+      t.references :client, index: true
 
       t.timestamps
     end

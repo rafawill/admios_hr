@@ -1,8 +1,5 @@
 <div class="authform_large">
    <%= form_for(:person, url: developer_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
-
-
-   
     <div class="col-md-12">
     	<%= devise_error_messages! %>
        <h3>Create a New Developer</h3>

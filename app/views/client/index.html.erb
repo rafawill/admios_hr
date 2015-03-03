@@ -1,0 +1,27 @@
+
+<div class="container">
+  <div class="row">
+    <h3>Clients</h3>
+     <h6><%= link_to(" + Create New Client", new_client_path, :method => :get, :class => 'button-xs') %></h6>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @clients.each do |client| %>
+            <tr>
+              <td>
+  					<%= client.name.to_s %> 
+				</td>
+
+				<td>
+				  <%= link_to("Edit", edit_client_path(client), :method => :get, :class => 'button-xs') %>
+				  <%= link_to("Delete", client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+				</td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

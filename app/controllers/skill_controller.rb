@@ -20,8 +20,7 @@ class SkillController < ApplicationController
   def create
 	  @skill = Skill.new(secure_params)
 	  if @skill.save
-	    flash[:success] = "Skill Created!"
-	    redirect_to skill_index_path
+	    redirect_to skill_index_path,   :notice => "Skill Created!"
 	  else
 	    redirect_to new_skill_path, :alert => "Unable to create Skill."
 	  end
