@@ -1,8 +1,8 @@
 <div class="authform_large">
-   <%= form_for(:skill, url: skill_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
+   <%= form_for(:developer_has_skills, url: developer_developer_has_skills_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
     <div class="col-md-12">
     	<%= devise_error_messages! %>
-       <h3>Create a New Skill</h3>
+       <h3>Associate Skill to <%= @developer.name.to_s + ' ' + @developer.last_name.to_s %> </h3>
     </div>
   <div class="row">
 <div class="col-md-6">

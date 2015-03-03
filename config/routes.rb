@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root to: 'visitors#index'
 
   devise_for :users, controllers: { sessions: "user/sessions", registrations: "user/registrations" }
@@ -14,5 +13,10 @@ Rails.application.routes.draw do
   resources :project
 
   resources :client
+
+
+  resources :developer do
+    resources :developer_has_skills
+  end
 
 end

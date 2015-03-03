@@ -1,0 +1,27 @@
+
+<div class="container">
+  <div class="row">
+    <h3><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> Skills</h3>
+     <h6><%= link_to(" + Associate New Skill ", new_developer_developer_has_skill_path, :method => :get, :class => 'button-xs') %></h6>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @developer_skills.each do |developer_skill| %>
+            <tr>
+              <td>
+  					<%= developer_skill.name.to_s + ' ' + developer_skill.last_name.to_s %> 
+				</td>
+
+				<td>
+				  <%= link_to("Edit", edit_developer_path(developer_skill), :method => :get, :class => 'button-xs') %>
+				  <%= link_to("Delete", developer_path(developer_skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+				</td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

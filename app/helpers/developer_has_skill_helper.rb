@@ -1,0 +1,2 @@
+module DeveloperHasSkillHelper
+end
