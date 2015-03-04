@@ -2,45 +2,31 @@
    <%= form_for(:developer_has_skills, url: developer_developer_has_skills_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
     <div class="col-md-12">
     	<%= devise_error_messages! %>
-       <h3>Associate Skill to <%= @developer.name.to_s + ' ' + @developer.last_name.to_s %> </h3>
+       <h3>Associate Skill to <%= @developer.name.to_s + ' ' + @developer.last_name.to_s  %> </h3>
     </div>
   <div class="row">
-<div class="col-md-6">
+<div class="col-md-12">
           <div class="form-group">
-            <%= f.label :name %>
-            <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-          </div>
+              <%= f.label :Skill %> </br>
+              <%= f.select(:skill_id, options_for_select(@developer_assigned_skills.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control'})  %>
+          </div> 
+
           <div class="form-group">
-              <%= f.label :Skill_Type %> </br>
-              <%= f.select(:skill_type, Skill.skill_types.keys.map {|id| [id.titleize,id]} )  %>
+              <%= f.label :Skill_Level %> </br>
+              <%= f.select(:rating, PersonHasSkill.skill_ratings.map {|key, id| [key.titleize, id ]} , {},{ class:  'form-control'})  %>
           </div> 
           <div class="form-group">
-              <%= f.label :Origin %> </br>
-              <%= f.select(:origin, Skill.origins.keys.map {|id| [id.titleize,id]} )  %>
+              <%= f.label :Number_of_projects %> </br>
+              <%= f.select(:projects, (0..10) , {},{ class:  'form-control'})  %>
           </div> 
            <div class="form-group">
-            <%= f.label :Documentation_URL %>
-            <%= f.url_field :documentation, class: 'form-control' %>
-          </div>
+            <%= f.label :Additional_notes %>
+            <%= f.text_area :note, rows: 5, class: 'form-control' %>
+          </div>   
          
     </div>
-    <div class="col-md-6">
-           <div class="form-group">
-            <%= f.label :description %>
-            <%= f.text_area :description, rows: 3, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :Current_Version %>
-            <%= f.text_field :current_version, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :Release_Date %>
-            <%= f.date_field :release_date, class: 'form-control' %>
-          </div>
- 
-    </div>
     <div class="col-md-12">
-      <%= f.submit 'Create Skill', :class => 'btn btn-primary btn-lg btn-block' %>
+      <%= f.submit 'Associate Skill', :class => 'btn btn-primary btn-lg btn-block' %>
     </div>
   </div>
   <% end %>

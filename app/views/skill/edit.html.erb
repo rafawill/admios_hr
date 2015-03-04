@@ -15,11 +15,11 @@
           </div>
           <div class="form-group">
               <%= f.label :Skill_Type %> </br>
-              <%= f.select(:skill_type, Skill.skill_types.keys.map {|id| [id.titleize,id]} )  %>
+              <%= f.select(:skill_type, Skill.skill_types.keys.map {|id| [id.titleize,id]} , {},{ class:  'form-control'} )  %>
           </div> 
           <div class="form-group">
               <%= f.label :Origin %> </br>
-              <%= f.select(:origin, Skill.origins.keys.map {|id| [id.titleize,id]} )  %>
+              <%= f.select(:origin, Skill.origins.keys.map {|id| [id.titleize,id]}  , {},{ class:  'form-control'})  %>
           </div> 
            <div class="form-group">
             <%= f.label :Documentation_URL %>

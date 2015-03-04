@@ -1,2 +1,34 @@
-<h1>DeveloperHasSkill#edit</h1>
-<p>Find me in app/views/developer_has_skill/edit.html.erb</p>
+<div class="authform_large">
+   <%= form_for(:developer_has_skills, url: developer_developer_has_skill_path(@developer_has_skills.person_id, @developer_has_skills.id), :html => { :method => :put, :role => 'form', :multipart => true}) do |f| %>
+   
+    <div class="col-md-12">
+    	<%= devise_error_messages! %>
+       <h3>Associate Skill to <%= @developer.name.to_s + ' ' + @developer.last_name.to_s %> </h3>
+    </div>
+  <div class="row">
+<div class="col-md-12">
+          <div class="form-group">
+              <%= f.label :Skill %> </br>
+              <%= f.select(:skill_id, options_for_select(Skill.all.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control', :disabled => true})  %>
+          </div> 
+
+          <div class="form-group">
+              <%= f.label :Skill_Level %> </br>
+              <%= f.select(:rating, PersonHasSkill.skill_ratings.map {|key, id| [key.titleize, id ]} , {},{ class:  'form-control'})  %>
+          </div> 
+          <div class="form-group">
+              <%= f.label :Number_of_projects %> </br>
+              <%= f.select(:projects, (0..10) , {},{ class:  'form-control'})  %>
+          </div> 
+           <div class="form-group">
+            <%= f.label :Additional_notes %>
+            <%= f.text_area :note, rows: 5, class: 'form-control' %>
+          </div>   
+         
+    </div>
+    <div class="col-md-12">
+      <%= f.submit 'Update Association', :class => 'btn btn-primary btn-lg btn-block' %>
+    </div>
+  </div>
+  <% end %>
+</div>

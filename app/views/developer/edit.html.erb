@@ -37,11 +37,11 @@
     <div class="col-md-6">
           <div class="form-group">
               <%= f.label :Nationality %> </br>
-              <%= f.select(:nationality, Person.countries.keys.map {|nation| [nation.titleize,nation]} )  %>
+              <%= f.select(:nationality, Person.countries.keys.map {|nation| [nation.titleize,nation]}  , {},{ class:  'form-control'} )  %>
           </div> 
           <div class="form-group">
               <%= f.label :Type_Of_Identification %> </br>
-              <%= f.select(:id_type, Person.id_types.keys.map {|id| [id.titleize,id]} )  %>
+              <%= f.select(:id_type, Person.id_types.keys.map {|id| [id.titleize,id]}  , {},{ class:  'form-control'})  %>
           </div> 
           <div class="form-group">
             <%= f.label :Identification_Number %>
