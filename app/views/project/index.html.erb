@@ -1,6 +1,3 @@
-
-
-
 <div class="container">
   <div class="row">
     <h3>Projects</h3>
@@ -11,12 +8,12 @@
           <% @projects.each do |project| %>
             <tr>
               <td>
-  					<%= project.name.to_s %> 
-				</td>
-				<td>
-				  <%= link_to("Edit", edit_project_path(project), :method => :get, :class => 'button-xs') %>
-				  <%= link_to("Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
-				</td>
+      					<%= project.name.to_s %> 
+    				</td>
+    				<td>
+    				  <%= link_to("Edit", edit_project_path(project), :method => :get, :class => 'button-xs') %>
+    				  <%= link_to("Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+    				</td>
             </tr>
           <% end %>
         </tbody>

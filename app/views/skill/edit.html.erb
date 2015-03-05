@@ -1,14 +1,20 @@
 <div class="authform_large">
    <%= form_for(:skill, :url => skill_path(@skill.id), :html => { :method => :put, :role => 'form', :multipart => true}) do |f| %>
-
-
-   
     <div class="col-md-12">
     	<%= devise_error_messages! %>
+        <% if @skill.errors.any? %>
+        <div id="error_explanation">
+        <ul>
+        <% @skill.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+        <% end %>
        <h3>Create a New Skill</h3>
     </div>
   <div class="row">
-<div class="col-md-6">
+    <div class="col-md-6">
           <div class="form-group">
             <%= f.label :name %>
             <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
@@ -24,8 +30,7 @@
            <div class="form-group">
             <%= f.label :Documentation_URL %>
             <%= f.url_field :documentation, class: 'form-control' %>
-          </div>
-         
+          </div> 
     </div>
     <div class="col-md-6">
            <div class="form-group">
@@ -40,7 +45,6 @@
             <%= f.label :Release_Date %>
             <%= f.date_field :release_date, class: 'form-control' %>
           </div>
- 
     </div>
     <div class="col-md-12">
       <%= f.submit 'Update Skill', :class => 'btn btn-primary btn-lg btn-block' %>

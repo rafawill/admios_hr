@@ -8,58 +8,9 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super
-    # build_resource(sign_up_params)
-    # binding.pry
-    # resource_saved = resource.save
-    # binding.pry
-    # yield resource if block_given?
-    # if resource_saved
-    #   if resource.active_for_authentication?
-    #     set_flash_message :notice, :signed_up if is_flashing_format?
-    #     sign_up(resource_name, resource)
-    #     respond_with resource, location: after_sign_up_path_for(resource)
-    #   else
-    #     set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-    #     expire_data_after_sign_in!
-    #     respond_with resource, location: after_inactive_sign_up_path_for(resource)
-    #   end
-    # else
-    #   clean_up_passwords resource
-    #   #set_minimum_password_length
-    #   respond_with resource
-    # end
-
-
-          # user = User.new
-      # user.name = params[:user][:name]
-      # user.last_name = params[:user][:last_name]
-      # user.address = params[:user][:address]
-      # user.phone = params[:user][:phone]
-      # user.cell_phone = params[:user][:cell_phone]
-     # prev_id = User.last.id
-     # super
-     # post_id = User.last.id
-     # binding.pry
-     # if prev_id != post_id
-     #  user = User.last
-     #  user.name = params[:user][:name]
-     #  user.last_name = params[:user][:last_name]
-     #  user.address = params[:user][:address]
-     #  user.phone = params[:user][:phone]
-     #  user.cell_phone = params[:user][:cell_phone]
-      # case params[:user][:role]
-      #   when "user"
-      #     user.role = 0
-      #   when "tasker"
-      #     user.role = 1
-      #   when "admin"
-      #     user.role = 2
-      #   end
-      #   user.save!
-   # end
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -67,20 +18,14 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-   def update
-     super
-     puts "Entro a Update"
-     binding.pry
-
-
-   end
+   # def update
+   #   super
+   # end
 
   # DELETE /resource
-  def destroy
-    super
-     puts "Entro a Destroy"
-     binding.pry
-  end
+  # def destroy
+  #   super
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

@@ -271,6 +271,7 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
+  rspec
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

@@ -1,11 +1,20 @@
 <div class="authform_large">
-   <%= form_for(:project, url: project_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
+   <%= form_for(@project, url: project_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
     <div class="col-md-12">
     	<%= devise_error_messages! %>
+        <% if @project.errors.any? %>
+        <div id="error_explanation">
+        <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+        <% end %>
        <h3>Create a New Project</h3>
     </div>
   <div class="row">
-<div class="col-md-6">
+    <div class="col-md-6">
           <div class="form-group">
             <%= f.label :name %>
             <%= f.text_field :name, :autofocus => true, class: 'form-control' %>

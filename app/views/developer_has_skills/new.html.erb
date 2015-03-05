@@ -1,33 +1,42 @@
 <div class="authform_large">
-   <%= form_for(:developer_has_skills, url: developer_developer_has_skills_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
+   <%= form_for(@developer_skill, url: developer_developer_has_skills_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
     <div class="col-md-12">
     	<%= devise_error_messages! %>
+          <% if @developer_skill.errors.any? %>
+          <div id="error_explanation">
+          <ul>
+          <% @developer_skill.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+          </div>
+          <% end %>
        <h3>Associate Skill to <%= @developer.name.to_s + ' ' + @developer.last_name.to_s  %> </h3>
     </div>
-  <div class="row">
-<div class="col-md-12">
-          <div class="form-group">
-              <%= f.label :Skill %> </br>
-              <%= f.select(:skill_id, options_for_select(@developer_assigned_skills.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control'})  %>
-          </div> 
+    <div class="row">
+      <div class="col-md-12">
+            <div class="form-group">
+                <%= f.label :Skill %> </br>
+                <%= f.select(:skill_id, options_for_select(@developer_assigned_skills.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control'})  %>
+            </div> 
 
-          <div class="form-group">
-              <%= f.label :Skill_Level %> </br>
-              <%= f.select(:rating, PersonHasSkill.skill_ratings.map {|key, id| [key.titleize, id ]} , {},{ class:  'form-control'})  %>
-          </div> 
-          <div class="form-group">
-              <%= f.label :Number_of_projects %> </br>
-              <%= f.select(:projects, (0..10) , {},{ class:  'form-control'})  %>
-          </div> 
-           <div class="form-group">
-            <%= f.label :Additional_notes %>
-            <%= f.text_area :note, rows: 5, class: 'form-control' %>
-          </div>   
-         
+            <div class="form-group">
+                <%= f.label :Skill_Level %> </br>
+                <%= f.select(:rating, PersonHasSkill.skill_ratings.map {|key, id| [key.titleize, id ]} , {},{ class:  'form-control'})  %>
+            </div> 
+            <div class="form-group">
+                <%= f.label :Number_of_projects %> </br>
+                <%= f.select(:projects, (0..10) , {},{ class:  'form-control'})  %>
+            </div> 
+             <div class="form-group">
+              <%= f.label :Additional_notes %>
+              <%= f.text_area :note, rows: 5, class: 'form-control' %>
+            </div>   
+           
+      </div>
+      <div class="col-md-12">
+        <%= f.submit 'Associate Skill', :class => 'btn btn-primary btn-lg btn-block' %>
+      </div>
     </div>
-    <div class="col-md-12">
-      <%= f.submit 'Associate Skill', :class => 'btn btn-primary btn-lg btn-block' %>
-    </div>
-  </div>
   <% end %>
 </div>

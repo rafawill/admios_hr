@@ -1,11 +1,20 @@
 <div class="authform_large">
-   <%= form_for(:client, url: client_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
+   <%= form_for(@client, url: client_index_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
     <div class="col-md-12">
     	<%= devise_error_messages! %>
+        <% if @client.errors.any? %>
+        <div id="error_explanation">
+        <ul>
+        <% @client.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+        <% end %>
        <h3>Create a New Client</h3>
     </div>
   <div class="row">
-<div class="col-md-12">
+    <div class="col-md-12">
           <div class="form-group">
             <%= f.label :name %>
             <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
@@ -15,7 +24,6 @@
             <%= f.text_area :description, rows: 8, class: 'form-control' %>
           </div>      
     </div>
-    
     <div class="col-md-12">
       <%= f.submit 'Create Client', :class => 'btn btn-primary btn-lg btn-block' %>
     </div>

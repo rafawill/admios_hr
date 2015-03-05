@@ -1,8 +1,6 @@
-
 <div class="container">
   <div class="row">
     <h3><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> Skills</h3>
-
      <% unless@developer_assigned_skills.first.blank?  %>
          <h6><%= link_to(" + Associate New Skill ", new_developer_developer_has_skill_path, :method => :get, :class => 'button-xs') %></h6>
      <% else %>
@@ -15,13 +13,11 @@
             <tr>
               <td>
   					<%= developer_skill.skill.name.to_s + ' --- Level ---> ' + developer_skill.rating.to_s %> 
-				</td>
-
-  				<td>
-  				  <%= link_to("Edit", edit_developer_developer_has_skill_path(developer_skill.person_id,developer_skill ), :method => :get, :class => 'button-xs') %>
-  				  <%= link_to("Delete", developer_developer_has_skill_path(developer_skill.person_id,developer_skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
-  				</td>
-
+    				  </td>
+      				<td>
+      				  <%= link_to("Edit", edit_developer_developer_has_skill_path(developer_skill.person_id,developer_skill ), :method => :get, :class => 'button-xs') %>
+      				  <%= link_to("Delete", developer_developer_has_skill_path(developer_skill.person_id,developer_skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+      				</td>
             </tr>
           <% end %>
         </tbody>

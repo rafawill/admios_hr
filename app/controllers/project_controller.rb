@@ -1,20 +1,14 @@
 class ProjectController < ApplicationController
+  before_filter :authenticate_user!
+  
+
   def index
   	@projects = Project.all
   end
 
-  def show
-  	  @project = Project.find(params[:id])
-      unless current_user.admin?
-        redirect_to :back, :alert => "Access denied."
-      end
-  end
 
   def new
-  end
-
-  def edit
-  	@project = Project.find(params[:id])
+     @project = Project.new
   end
 
 
@@ -24,8 +18,13 @@ class ProjectController < ApplicationController
 	  if @project.save
 	    redirect_to project_index_path   :notice => "Project Created!"
 	  else
-	    redirect_to new_project_path, :alert => "Unable to create Project."
+      render :action => 'new'
 	  end
+  end
+
+
+  def edit
+    @project = Project.find(params[:id])
   end
 
 
@@ -35,7 +34,7 @@ class ProjectController < ApplicationController
     if @project.update_attributes(secure_params)
       redirect_to project_index_path, :notice => "Project updated."
     else
-      redirect_to project_path, :alert => "Unable to update Project."
+      render :action => 'edit'
     end
   end
 
