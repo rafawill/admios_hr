@@ -23,11 +23,11 @@ class DeveloperHasSkillsController < ApplicationController
   end
 
   def create
+    @developer_skill = PersonHasSkill.new(secure_params)
     @developer_skill.person_id = params[:developer_id]
     if @developer_skill.save
       redirect_to developer_developer_has_skills_path,   :notice => "Skill Association Created!"
     else
-      @developer_skill = PersonHasSkill.new(secure_params)
       @developer = Person.find(params[:developer_id])
       @developer_skills_list = PersonHasSkill.list_developer_skills(params[:developer_id])
       @developer_assigned_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
