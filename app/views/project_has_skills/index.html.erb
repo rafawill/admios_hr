@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <h3><%=  @project.name.to_s %> Skills</h3>
+     <% unless@project_assigned_skills.first.blank?  %>
+         <h6><%= link_to(" + Associate New Skill ", new_project_project_has_skill_path, :method => :get, :class => 'button-xs') %></h6>
+     <% else %>
+        <h6>You already assigned all the available skills to <%=  @project.name.to_s  %> </h6>
+     <%end%>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @project_skills.each do |project_skill| %>
+            <tr>
+              <td>
+  					<%= project_skill.skill.name.to_s %> 
+    				  </td>
+      				<td>
+      				  <%= link_to("Edit", edit_project_project_has_skill_path(project_skill.project_id,project_skill ), :method => :get, :class => 'button-xs') %>
+      				  <%= link_to("Delete", project_project_has_skill_path(project_skill.project_id,project_skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+      				</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

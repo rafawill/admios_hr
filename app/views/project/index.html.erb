@@ -11,6 +11,7 @@
       					<%= project.name.to_s %> 
     				</td>
     				<td>
+              <%= link_to("Manage Skills", project_project_has_skills_path(project), :class => 'button-xs btn-success') %>
     				  <%= link_to("Edit", edit_project_path(project), :method => :get, :class => 'button-xs') %>
     				  <%= link_to("Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
     				</td>

@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     resources :developer_has_skills
   end
 
+  resources :project do
+    resources :project_has_skills
+  end
+
 end

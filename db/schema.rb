@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303191911) do
+ActiveRecord::Schema.define(version: 20150306181301) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20150303191911) do
 
   add_index "person_has_skills", ["person_id"], name: "index_person_has_skills_on_person_id", using: :btree
   add_index "person_has_skills", ["skill_id"], name: "index_person_has_skills_on_skill_id", using: :btree
+
+  create_table "project_has_skills", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "skill_id"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_has_skills", ["project_id"], name: "index_project_has_skills_on_project_id", using: :btree
+  add_index "project_has_skills", ["skill_id"], name: "index_project_has_skills_on_skill_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"

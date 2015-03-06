@@ -2,15 +2,7 @@ class User < ActiveRecord::Base
   enum role: [:user, :developer, :admin]
 
    validates_presence_of :name, :last_name, :address, :phone, :cell_phone, :image
-  # #validates_presence_of :name, :last_name, :address, :phone, :cell_phone
-  # after_initialize :set_default_role, :if => :new_record?
 
-  # def set_default_role
-  #   self.role ||= :user
-  # end
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
