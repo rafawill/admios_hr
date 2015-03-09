@@ -17,7 +17,7 @@
       <div class="col-md-12">
             <div class="form-group">
                 <%= f.label :Skill %> </br>
-                <%= f.select(:skill_id, options_for_select(@developer_assigned_skills.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control'})  %>
+                <%= f.select(:skill_id, options_for_select(@developer_available_skills.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control'})  %>
             </div> 
 
             <div class="form-group">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306181301) do
+ActiveRecord::Schema.define(version: 20150309155038) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -38,6 +38,20 @@ ActiveRecord::Schema.define(version: 20150306181301) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "person_has_projects", force: true do |t|
+    t.integer  "person_id"
+    t.integer  "project_id"
+    t.date     "start_date"
+    t.date     "finish_date"
+    t.boolean  "current_project"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "person_has_projects", ["person_id"], name: "index_person_has_projects_on_person_id", using: :btree
+  add_index "person_has_projects", ["project_id"], name: "index_person_has_projects_on_project_id", using: :btree
 
   create_table "person_has_skills", force: true do |t|
     t.integer  "person_id"

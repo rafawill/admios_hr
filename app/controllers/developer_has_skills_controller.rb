@@ -4,7 +4,7 @@ class DeveloperHasSkillsController < ApplicationController
   def index
   	 @developer = Person.find(params[:developer_id])
      @developer_skills = PersonHasSkill.list_developer_skills(params[:developer_id])
-     @developer_assigned_skills = PersonHasSkill.list_of_valid_skills(@developer_skills)
+     @developer_available_skills = PersonHasSkill.list_of_valid_skills(@developer_skills)
   end
 
   def edit
@@ -15,7 +15,7 @@ class DeveloperHasSkillsController < ApplicationController
   def new
      @developer = Person.find(params[:developer_id])
      @developer_skills_list = PersonHasSkill.list_developer_skills(params[:developer_id])
-     @developer_assigned_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
+     @developer_available_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
      @developer_skill = PersonHasSkill.new
   end
 
@@ -30,7 +30,7 @@ class DeveloperHasSkillsController < ApplicationController
     else
       @developer = Person.find(params[:developer_id])
       @developer_skills_list = PersonHasSkill.list_developer_skills(params[:developer_id])
-      @developer_assigned_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
+      @developer_available_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
       render :action => 'new'
     end
   end

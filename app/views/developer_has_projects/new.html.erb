@@ -1,0 +1,44 @@
+<div class="authform_large">
+   <%= form_for(@developer_project, url: developer_developer_has_projects_path,  :method => "post",:html => { :role => 'form', :multipart => true}) do |f| %>
+    <div class="col-md-12">
+    	<%= devise_error_messages! %>
+          <% if @developer_project.errors.any? %>
+          <div id="error_explanation">
+          <ul>
+          <% @developer_project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+          </div>
+          <% end %>
+       <h3>Associate Project to <%= @developer.name.to_s + ' ' + @developer.last_name.to_s  %> </h3>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+         <div class="form-group">
+	        <%= f.label :Projects %> </br>
+	        <%= f.select(:project_id, options_for_select(@developer_available_projects.collect {|u| [ u.name, u.id ] }) , {},{ class:  'form-control'})  %>
+         </div> 
+         <div class="form-group">
+	        <%= f.label :Start_Date %>
+	        <%= f.date_field :start_date, class: 'form-control' %>
+      	 </div>
+      	 <div class="form-group">
+	        <%= f.label :Finish_date %>
+	        <%= f.date_field :finish_date, class: 'form-control' %>
+      	 </div>
+      	 <div class="form-group">
+	        <%= f.label :Current_Project? %>
+	        <%= f.check_box :current_project, {class: 'form-control'}%>
+      	 </div>
+         <div class="form-group">
+          <%= f.label :Additional_notes %>
+          <%= f.text_area :note, rows: 5, class: 'form-control' %>
+        </div>             
+      </div>
+      <div class="col-md-12">
+        <%= f.submit 'Associate Project', :class => 'btn btn-primary btn-lg btn-block' %>
+      </div>
+    </div>
+  <% end %>
+</div>
