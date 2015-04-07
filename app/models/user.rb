@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   enum role: [:user, :developer, :admin]
 
-   validates_presence_of :name, :last_name, :address, :phone, :cell_phone, :image
+  validates_presence_of :name, :last_name, :address, :phone, :cell_phone, :image
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

@@ -1,0 +1,19 @@
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Name</th>
+<th>Skills</th>
+<th>Scores</th>
+</tr>
+</thead>
+<tbody>
+<% @person_skill.each do |person| %>
+
+<tr>
+<td><%= person[:person]['name']%> <%= person[:person]['last_name']%></td>
+<td><%= person[:skill]['name']%></td>
+<td><%= person[:person_skill]['rating']%></td>
+</tr>
+<% end%>
+</tbody>
+</table>	

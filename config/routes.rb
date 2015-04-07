@@ -14,6 +14,11 @@ Rails.application.routes.draw do
 
   resources :client
 
+  post '/search_skills/search/', to: 'search_skills#search'
+
+  get 'search_skills/index/', to: 'search_skills#index'
+
+  resources :search_skills
 
   resources :developer do
     resources :developer_has_skills
