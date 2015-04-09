@@ -2,18 +2,28 @@
 <thead>
 <tr>
 <th>Name</th>
-<th>Skills</th>
-<th>Scores</th>
+
 </tr>
 </thead>
 <tbody>
-<% @person_skill.each do |person| %>
+<% @person_skill.each do |developer| %>
 
-<tr>
-<td><%= person[:person]['name']%> <%= person[:person]['last_name']%></td>
-<td><%= person[:skill]['name']%></td>
-<td><%= person[:person_skill]['rating']%></td>
-</tr>
+	<tr>
+	<td> <%= "#{developer.first.name}  #{developer.first.last_name}"%>
+		<table class="table table-striped">
+		
+			<% developer.second.each do |skills| %>
+			<tr>
+		   <td>
+			<div class="to_left"><%= "#{skills.skill.name}"  %></div>
+			<%= skill_color("#{skills.rating}")%>
+		   </td>
+		   </tr>	
+			<% end%>
+		
+		</table>
+	</td>
+	</tr>	
 <% end%>
 </tbody>
 </table>	

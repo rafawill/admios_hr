@@ -24,12 +24,9 @@ class PersonHasSkill < ActiveRecord::Base
 	end
 
 	def self.get_person_skill(ids)
-		skill_relationships = PersonHasSkill.joins(:skill,:person).where('person_has_skills.skill_id in (?)', ids)
-		person_skill = []
-		 skill_relationships.each do | relationship|
-		 	person_skill.push(:person_skill => relationship, :person => relationship.person, :skill => relationship.skill)
-		 end	
-		 person_skill
+		skill_relationships = PersonHasSkill.joins(:person,:skill).where('skill_id in (?)', ids)
+		person_skill = skill_relationships.group_by(&:person)
+		person_skill
 	end	
 
 end

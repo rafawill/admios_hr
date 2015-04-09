@@ -1,3 +1,32 @@
 // Place all the styles related to the SearchSkills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.green-skill{
+	background-color: #00FF00;
+	width: 10px;
+	height: 10px;
+	float: left;
+	margin-top: 5px;
+}
+
+.yellow-skill{
+	background-color: #F7FE2E;
+	width: 10px;
+	height: 10px;
+	float: left;
+	margin-top: 5px;
+}
+
+.red-skill{
+	background-color: #FF0000;
+	width: 10px;
+	height: 10px;
+	float: left;
+	margin-top: 5px;
+}
+
+.to_left{
+	width: 50px;
+	float: left;
+}
