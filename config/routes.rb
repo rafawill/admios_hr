@@ -16,9 +16,12 @@ Rails.application.routes.draw do
 
   post '/search_skills/search/', to: 'search_skills#search'
 
-  get 'search_skills/index/', to: 'search_skills#index'
 
-  resources :search_skills
+  resources :search_skills do
+     member do
+      post 'search'
+    end
+  end  
 
   resources :developer do
     resources :developer_has_skills

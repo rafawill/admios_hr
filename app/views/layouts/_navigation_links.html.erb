@@ -8,7 +8,7 @@
       <li><%= link_to 'Skills', skill_index_path %></li>
       <li><%= link_to 'Projects', project_index_path %></li>
       <li><%= link_to 'Clients', client_index_path %></li>
-      <li><%= link_to 'Search', 'search_skills#index' %></li></ul>
+      <li><%= link_to 'Search', search_skills_path %></li></ul>
     <% end %>
   <ul class="nav navbar-nav navbar-right">  
   <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>

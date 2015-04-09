@@ -1,29 +1,17 @@
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Name</th>
-
-</tr>
-</thead>
-<tbody>
+<div class="search-developer-skills">	
 <% @person_skill.each do |developer| %>
-
-	<tr>
-	<td> <%= "#{developer.first.name}  #{developer.first.last_name}"%>
-		<table class="table table-striped">
-		
-			<% developer.second.each do |skills| %>
-			<tr>
-		   <td>
-			<div class="to_left"><%= "#{skills.skill.name}"  %></div>
-			<%= skill_color("#{skills.rating}")%>
-		   </td>
-		   </tr>	
-			<% end%>
-		
-		</table>
-	</td>
-	</tr>	
+<div class="developer-container">
+  <h3><%= "#{developer.first.name}  #{developer.first.last_name}"%></h3>
+  <div class="skills-container">
+    <ul>
+      <% developer.second.each do |skills| %>
+        <li>
+          <%= skill_color("#{skills.rating}")%>
+          <div class="to_left"><%= "#{skills.skill.name}"  %></div>
+        </li>
+      <% end%>
+    </ul>
+  </div>
+</div>
 <% end%>
-</tbody>
-</table>	
+</div>
