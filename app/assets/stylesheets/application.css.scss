@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+ html,body{
+ 	height: 100%;
+ 	width:100%;
+ }
+div#ajax-loader {
+    display: none;
+    width:100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align:center;
+    margin-left: -50px;
+    margin-top: -100px;
+    z-index:2;
+    overflow: auto;
+    background:url('ajax-loader.gif') 50% 50% no-repeat;
+}

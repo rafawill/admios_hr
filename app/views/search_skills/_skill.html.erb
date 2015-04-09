@@ -1,0 +1,7 @@
+<% @skills.each do |skill| %>
+  <label id="<%=skill.id%>" class="toggle-boton btn btn-primary">
+    <input type="checkbox" autocomplete="off"> <%= skill.name %>
+  </label>
+<% end %>
+
+<div id="person_skill"></div>	

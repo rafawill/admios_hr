@@ -14,6 +14,14 @@ Rails.application.routes.draw do
 
   resources :client
 
+  post '/search_skills/search/', to: 'search_skills#search'
+
+
+  resources :search_skills do
+     member do
+      post 'search'
+    end
+  end  
 
   resources :developer do
     resources :developer_has_skills

@@ -1,0 +1,64 @@
+// Place all the styles related to the SearchSkills controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.person_skill{
+  width: 100%;
+  height:100%;
+  margin-top: 50px;
+}
+.search-developer-skills{
+	width: 100%;
+	height:100%;
+	margin: 50px 30px 20px 30px; 
+	.developer-container{
+		width: 250px;
+		height: 200px;
+		float:left;
+		background-color: #FFF;
+		border: 1px solid #CCC;
+		margin: 10px 20px;
+		padding: 10px;
+		h3{
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size: 20px;
+		}
+		.skills-container{
+			ul{
+				list-style: none;
+				padding-left: 12px;
+				li{
+					float: left;
+					width: 100%
+				}
+			}
+		}
+	}
+}
+.rating-skill{
+    width: 10px;
+	height: 10px;
+	float: left;
+	margin-top: 5px;
+}
+
+.green-skill{
+	@extend .rating-skill;
+	background-color: #00FF00;
+}
+
+.yellow-skill{
+	@extend .rating-skill;
+	background-color: #F7FE2E;
+}
+
+.red-skill{
+	@extend .rating-skill;
+	background-color: #FF0000;
+}
+
+.to_left{
+	width: 50px;
+	float: left;
+	padding-left: 5px;
+}
