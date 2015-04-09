@@ -24,7 +24,7 @@ class PersonHasSkill < ActiveRecord::Base
 	end
 
 	def self.get_person_skill(ids)
-		skill_relationships = PersonHasSkill.joins(:person,:skill).where('skill_id in (?)', ids)
+		skill_relationships = PersonHasSkill.joins(:person,:skill).where('skill_id in (?)', ids).order("rating desc")
 		person_skill = skill_relationships.group_by(&:person)
 		person_skill
 	end	
