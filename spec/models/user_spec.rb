@@ -1,13 +1,15 @@
+require 'rails_helper'
+
 describe User do
 
-  before(:each) { @user = User.new(email: 'user@example.com') }
-
-  subject { @user }
-
-  it { should respond_to(:email) }
-
-  it "#email returns a string" do
-    expect(@user.email).to match 'user@example.com'
-  end
+  context 'validations' do
+ 	subject{build(:user)} 
+	it {should validate_presence_of(:name)}
+	it {should validate_presence_of(:last_name)}
+	it {should validate_presence_of(:address)}
+	it {should validate_presence_of(:phone)}
+	it {should validate_presence_of(:cell_phone)}
+	it {should validate_presence_of(:image)}
+  end	
 
 end
