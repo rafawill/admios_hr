@@ -1,5 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe Project, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+
+describe Project do
+
+	context 'validation' do
+	 	subject{build(:project)} 
+	 	it {should validate_presence_of(:name)}
+	 	it {should validate_presence_of(:description)}
+	 	it {should validate_presence_of(:start_date)}
+	 	it {should validate_presence_of(:website)}
+	 	it {should validate_presence_of(:github)}
+    end
+
+    context 'association with' do
+
+	 	it { should have_many(:project_has_skills) }
+	 	it { should have_many(:person_has_projects) }
+	 	it { should belong_to(:client) }
+    end
+end	

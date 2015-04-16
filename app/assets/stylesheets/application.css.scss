@@ -14,8 +14,9 @@
  *= require_self
  */
  html,body{
- 	height: 100%;
+ 	height: auto;
  	width:100%;
+    background-color:#eee;
  }
 div#ajax-loader {
     display: none;
