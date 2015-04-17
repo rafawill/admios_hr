@@ -1,13 +1,13 @@
 <div class="search-developer-skills">	
-<% @person_skill.each do |developer| %>
+<% @person_skill.each_with_index do |developer,index| %>
 <div class="developer-container">
-  <h3><%= "#{developer.first.name}  #{developer.first.last_name}"%></h3>
+  <h3><%=  "#{index + 1}. #{developer.first.name}  #{developer.first.last_name}"%></h3>
   <div class="skills-container">
     <ul>
       <% developer.second.each do |skills| %>
         <li>
-          <%= skill_color("#{skills.rating}")%>
-          <div class="to_left"><%= "#{skills.skill.name}"  %></div>
+          <%= skill_color("#{skills.rating}") %>
+          <div class="to_left"><%= "#{skills.skill.name} "  %><%= "(#{skills.rating})"%></div>
         </li>
       <% end%>
     </ul>
