@@ -24,6 +24,8 @@
 			font-size: 20px;
 		}
 		.skills-container{
+			height: 138px;
+			overflow-y:auto; 
 			ul{
 				list-style: none;
 				padding-left: 12px;
@@ -58,7 +60,7 @@
 }
 
 .to_left{
-	width: 50px;
+	width: 200px;
 	float: left;
 	padding-left: 5px;
 }
