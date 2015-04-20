@@ -15,7 +15,7 @@ development:
   database: admios_human_talent_repository_development
   pool: 5
   username: root
-  password: c12o05f82
+  password: abc123
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: admios_human_talent_repository_test
   pool: 5
   username: root
-  password: c12o05f82
+  password: abc123
   host: localhost
 
 production:
@@ -38,5 +38,5 @@ production:
   database: admios_human_talent_repository_production
   pool: 5
   username: root
-  password: c12o05f82
+  password: abc123
   host: localhost
