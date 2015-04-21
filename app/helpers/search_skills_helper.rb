@@ -10,4 +10,13 @@ module SearchSkillsHelper
 		 	content_tag(:div, nil,class: "green-skill")
 		end   
 	end	
+
+
+	def has_project(bool)
+		if bool == true
+		  label_tag nil, 'In Project', class: 'label label-danger'
+	    else
+          label_tag nil, 'Available', class: 'label label-success'
+	    end	
+	end	
 end

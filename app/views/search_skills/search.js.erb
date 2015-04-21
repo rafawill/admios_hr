@@ -3,6 +3,13 @@
 <div class="developer-container">
   <h3><%=  "#{index + 1}. #{developer.first.name}  #{developer.first.last_name}"%></h3>
   <div class="skills-container">
+   <% if developer.first.person_has_projects.blank?  %>
+   <%=  has_project(false) %>
+   <%  else %>
+     <% developer.first.person_has_projects.each do |projects| %>
+     <%=  has_project(projects.project.current_project) %>
+     <% end %>
+   <%  end %>
     <ul>
       <% developer.second.each do |skills| %>
         <li>
