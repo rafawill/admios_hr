@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421202357) do
+ActiveRecord::Schema.define(version: 20150421202916) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150421202357) do
     t.string   "home_number"
     t.string   "cel_number"
     t.string   "address"
-    t.string   "nationality"
     t.string   "id_number"
     t.date     "birth_day"
     t.datetime "created_at"
@@ -43,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150421202357) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "document_type_id"
+    t.integer  "country_id"
   end
 
   create_table "person_has_projects", force: true do |t|

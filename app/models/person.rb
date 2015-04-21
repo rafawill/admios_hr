@@ -1,13 +1,14 @@
 class Person < ActiveRecord::Base
- #enum id_type: ['National ID', 'Passport', 'Other']
+
  belongs_to :document_type
- enum countries: ['Argentina','Brasil','Bolivia', 'Colombia','Honduras','Panama','Venezuela']
+ belongs_to :country
+
  has_many :person_has_skills
  has_many :person_has_projects
 
  has_many :skill, through: :person_has_skills
 
- validates_presence_of :name, :last_name, :email, :cel_number , :address, :id_number, :birth_day, :nationality, :document_type_id
+ validates_presence_of :name, :last_name, :email, :cel_number , :address, :id_number, :birth_day, :country_id, :document_type_id
 
 
 

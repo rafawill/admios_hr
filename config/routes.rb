@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :countries
+
   resources :document_types
 
   root to: 'visitors#index'

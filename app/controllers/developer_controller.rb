@@ -53,7 +53,7 @@ class DeveloperController < ApplicationController
 
 
   def secure_params
-    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :natioanlity, :document_type_id, :id_number, :birth_day, :nationality, :image)
+    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :country_id, :document_type_id, :id_number, :birth_day, :image)
   end
 
 
