@@ -28,7 +28,6 @@ class SkillController < ApplicationController
 
   def update
      @skill = Skill.find(params[:id])
-     binding.pry
     if @skill.update_attributes(secure_params)
       redirect_to skill_index_path, :notice => "Skill updated."
     else

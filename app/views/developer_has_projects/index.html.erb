@@ -2,27 +2,35 @@
   <div class="row">
     <h3><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> Projects</h3>
      <% if @current_projects.length < 3  %>
-         <h6><%= link_to(" + Associate New Project ", new_developer_developer_has_project_path, :method => :get, :class => 'button-xs') %></h6>
+         <div class="row text-right"><%= link_to(" + Associate New Project ", new_developer_developer_has_project_path, :method => :get, :class => 'button-xs') %></div>
          <% if @current_projects.length > 0 %>
          <h6><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> is already assigned to  (<%= @current_projects.length.to_s %>) project that is currently under his domain  </h6>
          <% end %>
      <% else %>
         <h6><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> is already assigned to  (<%= @current_projects.length.to_s %>) project that is currently under his domain, is not possible to add new projects without finish some other first. </h6>
      <%end%>
-    <div class="column">
-      <table class="table">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Project</th>
+            <th>Actions</th>
+          </tr>  
+        </thead>
         <tbody>
-          <% @developer_projects.each do |developer_project| %>
+          <% @developer_projects.each_with_index do |developer_project, i| %>
             <tr>
+                 <th scope="row"><%= i + 1 %></th>
                 <td>
-    				    <%= developer_project.project.name.to_s %> 
+    				    <%= developer_project.project.name %> 
                 <% if developer_project.current_project %>
                 <span class="label label-default">Current Project</span>
                 <% end %>
   			       </td>
   				  <td>
 				  <%= link_to("Edit", edit_developer_developer_has_project_path(developer_project.person_id,developer_project ), :method => :get, :class => 'button-xs') %>
-				  <%= link_to("Delete", developer_developer_has_project_path(developer_project.person_id,developer_project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+				  <%= link_to("Delete", developer_developer_has_project_path(developer_project.person_id,developer_project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs btn-danger') %>
 				    </td>
             </tr>
           <% end %>

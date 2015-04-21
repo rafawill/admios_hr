@@ -1,19 +1,25 @@
 <div class="container">
   <div class="row">
     <h3>Projects</h3>
-     <h6><%= link_to(" + Create New Project", new_project_path, :method => :get, :class => 'button-xs') %></h6>
-    <div class="column">
-      <table class="table">
+     <div class="row text-right"><%= link_to(" + Create New Project", new_project_path, :method => :get, :class => 'button-xs') %></div>
+     <div class="row table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th>#</th>
+          <th>Project</th>
+          <th>Actions</th>
+        </tr>
         <tbody>
-          <% @projects.each do |project| %>
+          <% @projects.each_with_index do |project, i| %>
             <tr>
+               <th scope="row"><%= i + 1 %></th>
               <td>
-      					<%= project.name.to_s %> 
+      					<%= project.name %> 
     				</td>
     				<td>
               <%= link_to("Manage Skills", project_project_has_skills_path(project), :class => 'button-xs btn-success') %>
     				  <%= link_to("Edit", edit_project_path(project), :method => :get, :class => 'button-xs') %>
-    				  <%= link_to("Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+    				  <%= link_to("Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs btn-danger') %>
     				</td>
             </tr>
           <% end %>

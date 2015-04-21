@@ -14,7 +14,7 @@
       <% developer.second.each do |skills| %>
         <li>
           <%= skill_color("#{skills.rating}") %>
-          <div class="to_left"><%= "#{skills.skill.name} "  %><%= "(#{skills.rating})"%></div>
+          <div class="to_left"><%= "#{skills.skill.name} "  %><span class="badge"><%= "#{skills.rating}"%></span></div>
         </li>
       <% end%>
     </ul>

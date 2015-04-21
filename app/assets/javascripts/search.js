@@ -14,7 +14,7 @@ $(document).on( 'click', '.toggle-boton', function(e){
   async: true,
   dataType: "html",
   error: function(jqXHR, textStatus, errorThrown) {
-    return $('body').append("AJAX Error: " + textStatus);
+    //return $('body').append("AJAX Error: " + textStatus);
   },
   success: function(data, textStatus, jqXHR) {
   	return $('div#person_skill').html(data);
