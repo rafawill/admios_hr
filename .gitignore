@@ -18,3 +18,4 @@
 #Ignore all public images
 
 public/assets/user/
+config/database.yml
