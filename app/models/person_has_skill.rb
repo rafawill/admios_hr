@@ -7,12 +7,12 @@ class PersonHasSkill < ActiveRecord::Base
   validates_presence_of :note
 
 	def self.get_person_skill(ids)
-		skill_relationships = PersonHasSkill.joins(:person,:skill).where('skill_id in (?)', ids).order("rating desc")
-		person_skill = skill_relationships.group_by(&:person)
-		person_skill
+		skill_relationships = PersonHasSkill.where('skill_id in (?)', ids).group('person_id').order('sum(rating) desc')
+		skill_relationships
 	end	
 
 	def self.total_skill
 		Skill.all.count
 	end	
+
 end

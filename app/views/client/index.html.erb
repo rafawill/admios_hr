@@ -1,18 +1,26 @@
 <div class="container">
   <div class="row">
     <h3>Clients</h3>
-     <h6><%= link_to(" + Create New Client", new_client_path, :method => :get, :class => 'button-xs') %></h6>
-    <div class="column">
-      <table class="table">
+     <div class="row text-right"><%= link_to(" + Create New Client", new_client_path, :method => :get, :class => 'button-xs') %></div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+         <tr>
+          <th>#</th>
+          <th>Client</th>
+          <th>Actions</th>
+         </tr>
+        </thead>
         <tbody>
-          <% @clients.each do |client| %>
+          <% @clients.each_with_index do |client,i| %>
             <tr>
+              <th scope="row"><%= i + 1%></th>
               <td>
-  					<%= client.name.to_s %> 
+  					<%= client.name %> 
     				</td>
     				<td>
     				  <%= link_to("Edit", edit_client_path(client), :method => :get, :class => 'button-xs') %>
-    				  <%= link_to("Delete", client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+    				  <%= link_to("Delete", client_path(client), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs btn-danger') %>
     				</td>
             </tr>
           <% end %>

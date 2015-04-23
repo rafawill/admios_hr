@@ -1,20 +1,18 @@
 <div class="search-developer-skills">	
 <% @person_skill.each_with_index do |developer,index| %>
 <div class="developer-container">
-  <h3><%=  "#{index + 1}. #{developer.first.name}  #{developer.first.last_name}"%></h3>
+  <h3><%=  "#{index + 1}. #{developer.person.name}  #{developer.person.last_name}"%></h3>
   <div class="skills-container">
-   <% if developer.first.person_has_projects.blank?  %>
+  <% if developer.person.person_has_projects.blank?  %>
    <%=  has_project(false) %>
    <%  else %>
-     <% developer.first.person_has_projects.each do |projects| %>
-     <%=  has_project(projects.project.current_project) %>
-     <% end %>
+     <%=  has_project(developer.person.person_has_projects.map(&:current_project).include?(true)) %>
    <%  end %>
-    <ul>
-      <% developer.second.each do |skills| %>
+   <ul>
+      <% developer.person.person_skills(params[:id]).each do |skills| %>
         <li>
-          <%= skill_color("#{skills.rating}") %>
-          <div class="to_left"><%= "#{skills.skill.name} "  %><span class="badge"><%= "#{skills.rating}"%></span></div>
+          <%=skill_color("#{skills.rating}") %>
+          <div class="to_left"><%= "#{skills.name} "%> <span class="badge"><%= "#{skills.rating}"%></span></div>
         </li>
       <% end%>
     </ul>
