@@ -17,13 +17,47 @@ $(document).on( 'click', '.toggle-boton', function(e){
     //return $('body').append("AJAX Error: " + textStatus);
   },
   success: function(data, textStatus, jqXHR) {
-  	return $('div#person_skill').html(data);
+  	 $('div#person_skill').html(data);
+    if($("label#available").hasClass( "active" )){
+     $('.inproject').hide();
+     $('.available').show();
+     $( "#all-developer" ).removeClass( "active" )
+   
+    }else if($("label#in-project").hasClass( "active" )){
+      $('.available').hide();
+      $('.inproject').show();
+      $( "#all-developer" ).removeClass( "active" )
+    }else{
+       $('.developer-container').show();
+    }
+
   },
   beforeSend: function(){
       $('#ajax-loader').show();
     },
     complete: function(){
       $('#ajax-loader').hide();
+      $('div#filter-project').show();
     }
 });
+});
+
+$(document).on( 'click', '#all-developer', function(e){
+  $('.developer-container').show();
+});
+
+$(document).on( 'click', '#available', function(e){
+ if($("div.developer-container").hasClass( "available" )){
+  $('.inproject').hide();
+  $('.available').show();
+  $( "#all-developer" ).removeClass( "active" )
+ }
+});
+
+$(document).on( 'click', '#in-project', function(e){
+  if($("div.developer-container").hasClass( "inproject" )){
+  $('.available').hide();
+  $('.inproject').show();
+  $( "#all-developer" ).removeClass( "active" )
+ }
 });

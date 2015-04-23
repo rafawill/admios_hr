@@ -1,6 +1,7 @@
 <div class="search-developer-skills">	
 <% @person_skill.each_with_index do |developer,index| %>
-<div class="developer-container">
+
+<div class="developer-container <%= developer.person.person_has_projects.map(&:current_project).include?(true) ? 'inproject' : 'available'%>" data-developer="<%= developer.person.person_has_projects.map(&:current_project).include?(true) ? 'inproject' : 'available'%>" >
   <h3><%=  "#{index + 1}. #{developer.person.name}  #{developer.person.last_name}"%></h3>
   <div class="skills-container">
   <% if developer.person.person_has_projects.blank?  %>
