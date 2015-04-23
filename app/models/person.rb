@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
 
  has_many :skill, through: :person_has_skills
 
- validates_presence_of :name, :last_name, :email, :cel_number , :address, :id_number, :birth_day, :country_id, :document_type_id
+ validates_presence_of :name, :last_name, :email, :cel_number , :address, :id_number, :birth_day, :document_type_id, :country_id
 
 
 
