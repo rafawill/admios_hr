@@ -1,6 +1,6 @@
 class DeveloperController < ApplicationController
 	before_filter :authenticate_user!
- 
+
 
   def index
   	 @developers = Person.all
@@ -22,7 +22,8 @@ class DeveloperController < ApplicationController
 
 
   def edit
-  	 @developer = Person.find(params[:id])
+  	 @developer      = Person.find(params[:id])
+	 @document_types = DocumentType.all
   end
 
 
@@ -52,7 +53,7 @@ class DeveloperController < ApplicationController
 
 
   def secure_params
-    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :natioanlity ,:id_type, :id_number, :birth_day, :nationality, :image)
+    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :country_id, :document_type_id, :id_number, :birth_day, :image)
   end
 
 

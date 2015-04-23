@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :countries
+
+  resources :document_types
+
   root to: 'visitors#index'
 
   devise_for :users, controllers: { sessions: "user/sessions", registrations: "user/registrations" }
