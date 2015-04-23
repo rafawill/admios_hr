@@ -1,18 +1,24 @@
 <div class="container">
   <div class="row">
     <h3>Skills</h3>
-     <h6><%= link_to(" + Create New Skill", new_skill_path, :method => :get, :class => 'button-xs') %></h6>
-    <div class="column">
-      <table class="table">
+     <div class="row text-right"><%= link_to(" + Create New Skill", new_skill_path, :method => :get, :class => 'button-xs') %></div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Skill</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
         <tbody>
-          <% @skills.each do |skill| %>
+          <% @skills.each_with_index do |skill, i| %>
             <tr>
-              <td>
-  					<%= skill.name.to_s %> 
-    				</td>
+              <th scope="row"><%= i + 1%></th>
+              <td><%= skill.name %></td>
     				<td>
     				  <%= link_to("Edit", edit_skill_path(skill), :method => :get, :class => 'button-xs') %>
-    				  <%= link_to("Delete", skill_path(skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+    				  <%= link_to("Delete", skill_path(skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs btn-danger') %>
     				</td>
             </tr>
           <% end %>

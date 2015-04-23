@@ -5,8 +5,6 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :description, :start_date, :website, :github
 
-  scope :c_project, -> {where(:finish_date, nil).empty? ? true : false}
-
   def current_project
   	  Project.where("id = (?) AND finish_date = (?)",self.id, nil).empty? ? true : false
   end

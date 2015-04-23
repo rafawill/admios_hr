@@ -4,8 +4,8 @@ class DeveloperHasProjectsController < ApplicationController
   def index
   	 @developer = Person.find(params[:developer_id])
      @developer_projects = PersonHasProject.list_developer_projects(params[:developer_id])
-     @developer_available_projects = PersonHasProject.list_of_valid_projects(@developer_projects)
-     @current_projects = PersonHasProject.current_projects(@developer_projects)
+     @developer_available_projects = Project.where('id not in (?)', @developer_projects.map(&:project_id).nil? ? @developer_projects.map(&:project_id) : 0)
+     @current_projects = @developer_projects.current_projects
   end
 
   def edit
@@ -16,8 +16,8 @@ class DeveloperHasProjectsController < ApplicationController
   def new
      @developer = Person.find(params[:developer_id])
      @developer_projects = PersonHasProject.list_developer_projects(params[:developer_id])
-     @developer_available_projects = PersonHasProject.list_of_valid_projects(@developer_projects)
-     @current_projects = PersonHasProject.current_projects(@developer_projects)
+     @developer_available_projects = Project.where('id not in (?)', @developer_projects.map(&:project_id).nil? ? @developer_projects.map(&:project_id) : 0)
+     @current_projects = @developer_projects.current_projects
      redirect_to developer_developer_has_projects_path,   :alert => "Developer has too many projects" if @current_projects.length >= 3
      @developer_project = PersonHasProject.new
   end
@@ -31,15 +31,14 @@ class DeveloperHasProjectsController < ApplicationController
     else
       @developer = Person.find(params[:developer_id])
       @developer_projects_list = PersonHasProject.list_developer_projects(params[:developer_id])
-      @developer_available_projects = PersonHasProject.list_of_valid_projects(@developer_projects_list)
+      @developer_available_projects = Project.where('id not in (?)', @developer_projects.map(&:project_id).nil? ? @developer_projects.map(&:project_id) : 0)
       render :action => 'new'
     end
   end
 
   def update
      @developer_project = PersonHasProject.find(params[:id])
-     @developer_projects = PersonHasProject.list_developer_projects(params[:developer_id])
-     @current_projects = PersonHasProject.current_projects(@developer_projects)
+     @current_projects = @developer_project.current_projects
 
      if @current_projects.length >= 3
         if !@developer_project.current_project && secure_params[:current_project].eql?("1")

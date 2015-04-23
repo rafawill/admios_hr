@@ -8,7 +8,8 @@ class Person < ActiveRecord::Base
 
  has_many :skill, through: :person_has_skills
 
- validates_presence_of :name, :last_name, :email, :cel_number , :address, :id_number, :birth_day, :country_id, :document_type_id
+ validates_presence_of :name, :last_name, :email, :cel_number , :address, :id_number, :birth_day, :document_type_id, :country_id
+
 
 
 
@@ -17,5 +18,10 @@ class Person < ActiveRecord::Base
                       :path => ":rails_root/public/assets/developer/:id/:style/:basename.:extension"
 
   validates_attachment_size :image, :less_than => 5.megabytes
-  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/jpg'] 
+
+
+  def person_skills(ids)
+  	 self.skill.select('skills.*, person_has_skills.*').where('skills.id in (?)',ids).order('person_has_skills.rating desc')
+  end    
 end

@@ -18,4 +18,5 @@
 #Ignore all public images
 
 public/assets/user/
+public/assets/developer/
 config/database.yml

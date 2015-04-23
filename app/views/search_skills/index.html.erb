@@ -5,7 +5,21 @@
     <div class="row">
       <div class="btn-group" data-toggle="buttons">
         <%= render 'skill' %>
-      </div>  
+      </div> 
+      
+      	<div id="filter-project" class="btn-group none" data-toggle="buttons">
+      		<h3>Filter</h3>
+	       <label id='all-developer' autocomplete="off" class="toggle-project btn btn-primary active">
+	         <input  type="radio"> All
+	       </label>
+	       <label id="available"  class="toggle-project btn btn-primary">
+	         <input  type="radio" autocomplete="off"> Available
+	       </label>
+	       <label id="in-project" class="toggle-project btn btn-primary">
+	         <input  type="radio" autocomplete="off"> In project
+	       </label>
+       </div>
+       
       <%= render 'search' %>
     </div>
   </div>

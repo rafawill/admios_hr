@@ -1,12 +1,20 @@
 <div class="container">
   <div class="row">
     <h3>Developers</h3>
-     <h6><%= link_to(" + Create New Developer", new_developer_path, :method => :get, :class => 'button-xs') %></h6>
-      <div class="column">
-        <table class="table">
+     <div class="row text-right"><%= link_to(" + Create New Developer", new_developer_path, :method => :get, :class => 'button-xs') %></div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>  
           <tbody>
-            <% @developers.each do |developer| %>
+            <% @developers.each_with_index do |developer, i| %>
               <tr>
+                <th scope="row"><%= i + 1%></th>
                 <td>
     					<%= developer.name.to_s + ' ' + developer.last_name.to_s %> 
       				</td>
@@ -14,7 +22,7 @@
                 <%= link_to("Manage Projects", developer_developer_has_projects_path(developer), :class => 'button-xs btn-warning') %>
                 <%= link_to("Manage Skills", developer_developer_has_skills_path(developer), :class => 'button-xs btn-success') %>
       				  <%= link_to("Edit", edit_developer_path(developer), :method => :get, :class => 'button-xs') %>
-      				  <%= link_to("Delete", developer_path(developer), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+      				  <%= link_to("Delete", developer_path(developer), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs btn-danger') %>
       				</td>
               </tr>
             <% end %>

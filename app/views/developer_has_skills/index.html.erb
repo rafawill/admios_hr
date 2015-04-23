@@ -1,22 +1,37 @@
 <div class="container">
   <div class="row">
     <h3><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> Skills</h3>
-     <% unless@developer_available_skills.first.blank?  %>
-         <h6><%= link_to(" + Associate New Skill ", new_developer_developer_has_skill_path, :method => :get, :class => 'button-xs') %></h6>
+     <% 
+      #binding.pry
+
+     unless @developer_skills.total_skill == @developer_skills.count  %>
+         <div class="row text-right"><%= link_to(" + Associate New Skill ", new_developer_developer_has_skill_path, :method => :get, :class => 'button-xs') %></div>
      <% else %>
         <h6>You already assigned all the available skills to <%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> </h6>
      <%end%>
-    <div class="column">
-      <table class="table">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+          <th>#</th>
+          <th>Skill</th>
+          <th>Score</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
         <tbody>
-          <% @developer_skills.each do |developer_skill| %>
+          <% @developer_skills.each_with_index do |developer_skill, i| %>
             <tr>
+              <th scope="row"><%= i + 1 %></th>
               <td>
-  					<%= developer_skill.skill.name.to_s + ' --- Level ---> ' + developer_skill.rating.to_s %> 
+  					   <%= developer_skill.skill.name %> 
     				  </td>
+              <td>
+                  <%= developer_skill.rating %>
+              </td>  
       				<td>
       				  <%= link_to("Edit", edit_developer_developer_has_skill_path(developer_skill.person_id,developer_skill ), :method => :get, :class => 'button-xs') %>
-      				  <%= link_to("Delete", developer_developer_has_skill_path(developer_skill.person_id,developer_skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') %>
+      				  <%= link_to("Delete", developer_developer_has_skill_path(developer_skill.person_id,developer_skill), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs btn-danger') %>
       				</td>
             </tr>
           <% end %>

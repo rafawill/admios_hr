@@ -6,13 +6,16 @@ class SearchSkillsController < ApplicationController
 	end	
 	
 	def search
-		if params[:id] 
+		unless  params[:id].blank? 
 			ids = params[:id]
 			@person_skill = PersonHasSkill.get_person_skill(ids)
-			 respond_to do |format|
-		       format.js
-		     end
+		else
+			@person_skill = []
 		end	
+
+		respond_to do |format|
+		       format.js
+		end
      
     end		
 end

@@ -3,8 +3,7 @@ class DeveloperHasSkillsController < ApplicationController
 
   def index
   	 @developer = Person.find(params[:developer_id])
-     @developer_skills = PersonHasSkill.list_developer_skills(params[:developer_id])
-     @developer_available_skills = PersonHasSkill.list_of_valid_skills(@developer_skills)
+     @developer_skills = PersonHasSkill.where('person_id = ?', params[:developer_id])
   end
 
   def edit
@@ -14,8 +13,8 @@ class DeveloperHasSkillsController < ApplicationController
 
   def new
      @developer = Person.find(params[:developer_id])
-     @developer_skills_list = PersonHasSkill.list_developer_skills(params[:developer_id])
-     @developer_available_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
+     @developer_skills_list = PersonHasSkill.where('person_id = ?', params[:developer_id])
+     @developer_available_skills = Skill.where('id not in (?)', @developer_skills_list.map(&:skill_id))
      @developer_skill = PersonHasSkill.new
   end
 
@@ -29,8 +28,8 @@ class DeveloperHasSkillsController < ApplicationController
       redirect_to developer_developer_has_skills_path,   :notice => "Skill Association Created!"
     else
       @developer = Person.find(params[:developer_id])
-      @developer_skills_list = PersonHasSkill.list_developer_skills(params[:developer_id])
-      @developer_available_skills = PersonHasSkill.list_of_valid_skills(@developer_skills_list)
+      @developer_skills_list = PersonHasSkill.where('person_id = ?', params[:developer_id])
+      @developer_available_skills = Skill.where('id not in (?)', @developer_skills_list.map(&:skill_id))
       render :action => 'new'
     end
   end

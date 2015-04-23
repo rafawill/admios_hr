@@ -6,6 +6,9 @@
   height:100%;
   margin-top: 50px;
 }
+.none{
+	display:none;
+}
 .search-developer-skills{
 	width: 100%;
 	height:100%;
@@ -46,17 +49,17 @@
 
 .green-skill{
 	@extend .rating-skill;
-	background-color: #00FF00;
+	background-color: #5cb85c;
 }
 
 .yellow-skill{
 	@extend .rating-skill;
-	background-color: #F7FE2E;
+	background-color: #f0ad4e;
 }
 
 .red-skill{
 	@extend .rating-skill;
-	background-color: #FF0000;
+	background-color: #d9534f;
 }
 
 .to_left{
