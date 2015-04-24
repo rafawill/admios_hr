@@ -68,7 +68,24 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
- end	
+ end
 
-	
+
+ describe 'DELETE destroy'	do
+
+     before :each do
+    @admin = create(:user, name: "Beautiful", last_name: "User")
+  end
+  
+  it "deletes the user" do
+    expect{delete :destroy, id: @admin}.to change(User,:count).by(-1)
+  end
+    
+  it "redirects to users#index" do
+    delete :destroy, id: @admin
+    expect(response).to redirect_to(users_url)
+  end
+
+ end
+
 end

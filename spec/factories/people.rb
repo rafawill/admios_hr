@@ -8,17 +8,17 @@ FactoryGirl.define do
     "person#{n}@gmail.com"
   end
 
-  factory :person do
+  factory :person do |u|
     name
-    last_name "MyString"
+    last_name "Smith"
     email 
-    home_number "MyString"
-    cel_number "MyString"
+    home_number "999-9999"
+    cel_number "6666-2222"
     address "MyString"
-    id_type 0
-    id_number "MyString"
-    birth_day "2015-02-26"
-    nationality "MyString"
+    id_number "8-888-8888"
+    document_type_id 13
+    birth_day { 25.years.ago }
+    country_id 2
   end
 
 end

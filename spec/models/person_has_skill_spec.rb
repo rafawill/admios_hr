@@ -19,8 +19,8 @@ describe PersonHasSkill do
     end
  	it 'give id and get the developer' do
  		create(:person_has_skill,:skill,:person)
- 		person_has_skill = PersonHasSkill.get_person_skill([2])
- 		expect(person_has_skill.count).to eq(1)
+ 		person_has_skill = PersonHasSkill.get_person_skill(PersonHasSkill.all.map(&:skill_id))
+ 		expect(person_has_skill.length).to eq(2)
  	end 	 
  end	
 
