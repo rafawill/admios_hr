@@ -21,14 +21,16 @@ RSpec.describe SearchSkillsController, :type => :controller do
 	describe "Post search" do
 
 		before :each do
-			@person_has_skill = create(:person_has_skill,:skill,:person)
+			3.times do 
+				create(:person_has_skill,:skill,:person)
+			end	
 		end
 			
-		xit "search and get the PersonHasSkill object" do
+		it "search and get the PersonHasSkill object" do
 			ids = PersonHasSkill.all.map(&:skill_id)
 			post :search ,:id => ids, :format => 'js'
 			person_skill = PersonHasSkill.get_person_skill(ids)
-			expect(person_skill.lenght).to eq(1)
+			expect(person_skill.length).to eq(3)
 		end	
 
 	end	

@@ -28,7 +28,7 @@ RSpec.describe SkillController, :type => :controller do
 		      expect(flash[:notice]).to eq('Skill Created!')
 		    end
 		    
-		    it "redirects to the new skill" do
+		    it "redirects to the index skill" do
 		      post :create, skill: attributes_for(:skill)
 		      expect(response.location).to redirect_to(skill_index_path)
 		    end
