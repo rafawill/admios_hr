@@ -4,7 +4,6 @@ class Skill < ActiveRecord::Base
 
  has_many :person, through: :person_has_skills
 
- #enum skill_type: ['Framework', 'Object Oriented', 'Data Base', 'Front-End', 'Back-End', 'Functional', 'Visual', 'Soft Skill']
  enum skill_type: %w(Languages Frameworks Data Mobile)
  enum origin: ['Open Source', 'Unix', 'Microsoft', 'IBM', 'Apple', 'Sun']
 
@@ -15,5 +14,22 @@ class Skill < ActiveRecord::Base
 		#skill = Skill.joins(:person_has_skills,:person).where('skills.id in (?)', ids )
 		@skill.person.where('id in (?)', ids)
 		@skill
-	end	
+	end
+
+ def self.languages	
+ 	where('skill_type= ?', 0)
+ end
+
+ def self.framework
+  	where('skill_type = ?',1)
+  end
+
+  def self.database
+  	where('skill_type = ?',2)
+  end	
+
+  def self.mobile
+  	where('skill_type = ?',3)
+  end
+
 end

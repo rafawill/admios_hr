@@ -10,7 +10,18 @@ Rails.application.routes.draw do
   
   resources :users
 
-  resources :developer
+  resources :developer do
+    member do
+      post "edit_skill"
+      post "edit_project"
+      get "new_developer_skill"
+      post "create_developer_skill"
+      post "delete_developer_skill"
+      get "new_developer_project"
+      post "create_developer_project"
+      post "delete_developer_project"
+    end
+  end  
 
   resources :skill
 

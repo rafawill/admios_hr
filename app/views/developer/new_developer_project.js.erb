@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="new-developer-project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Associate project to <%= @developer.full_name %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+      <div class="col-md-12">
+         <div class="form-group">
+          <%= label_tag :Projects %> </br>
+          <%= select_tag(:project_id, options_for_select(@developer_available_projects.collect {|u| [ u.name, u.id ] }) , { class:  'form-control'})  %>
+         </div> 
+         <div class="form-group">
+          <%= label_tag :Start_Date %>
+          <%= date_field :start_date, :start_date,class: 'form-control' %>
+         </div>
+         <div class="form-group">
+          <%= label_tag :Finish_date  %>
+          <%= date_field :finish_date,:finish_date ,class: 'form-control' %>
+         </div>
+         <div class="form-group">
+          <%= label_tag :Current_Project? %>
+          <%= check_box :current_project, :person_has_project,{class: 'form-control'}%>
+         </div>
+         <div class="form-group">
+          <%= label_tag :Additional_notes %>
+          <%= text_area :note, :person_has_project ,rows: 5, class: 'form-control' %>
+        </div>             
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="save-developer-project" type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

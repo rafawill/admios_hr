@@ -15,4 +15,9 @@ class PersonHasSkill < ActiveRecord::Base
 		Skill.all.count
 	end	
 
+
+	def self.person_attributes(person_id)
+		self.where('person_id = ? ', person_id).first
+	end	
+
 end

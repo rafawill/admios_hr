@@ -4,6 +4,8 @@ class PersonHasProject < ActiveRecord::Base
 
   validates_presence_of :note, :start_date, :project_id
 
+  default_scope  { order(:start_date => :desc) }
+
   scope :current_projects, -> {where(current_project: true)}
 
 
