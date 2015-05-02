@@ -1,4 +1,5 @@
 class DocumentTypesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_document_type, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

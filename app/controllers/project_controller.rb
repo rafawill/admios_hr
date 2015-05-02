@@ -16,7 +16,7 @@ class ProjectController < ApplicationController
 	  @project = Project.new(secure_params)
     @project.client_id = params[:client_id]
 	  if @project.save
-	    redirect_to project_index_path   :notice => "Project Created!"
+	    redirect_to project_index_path, :notice => "Project Created!"
 	  else
       render :action => 'new'
 	  end

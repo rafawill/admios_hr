@@ -4,7 +4,7 @@ require 'rails_helper'
 describe PersonHasProject do
 
  context 'validation' do
- 	subject{build(:person_has_project)} 
+ 	subject{build(:person_has_project_true)} 
 	it {should validate_presence_of(:note)}
 	it {should validate_presence_of(:start_date)}
 	it {should validate_presence_of(:project_id)}
@@ -19,7 +19,7 @@ describe PersonHasProject do
  context 'lists developer proyects ' do
  	 	 
  	it 'give id and get the developer' do
- 		create(:person_has_project, project_id: 1, person_id: 1)
+ 		create(:person_has_project_false, project_id: 1, person_id: 1)
  		person_has_project = PersonHasProject.list_developer_projects(1)
  		expect(person_has_project.count).to eq(1)
  	end 	 
