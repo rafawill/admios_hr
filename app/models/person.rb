@@ -23,5 +23,26 @@ class Person < ActiveRecord::Base
 
   def person_skills(ids)
   	 self.skill.select('skills.*, person_has_skills.*').where('skills.id in (?)',ids).order('person_has_skills.rating desc')
-  end    
+  end
+
+  def full_name
+  	self.name + ' ' + self.last_name
+  end
+
+  def person_language_skill
+  	self.skill.where('skill_type = ?',0).order('person_has_skills.rating desc')
+  end	
+
+  def person_framework_skill
+  	self.skill.where('skill_type = ?',1).order('person_has_skills.rating desc')
+  end
+
+  def person_data_skill
+  	self.skill.where('skill_type = ?',2).order('person_has_skills.rating desc')
+  end	
+
+  def person_mobile_skill
+  	self.skill.where('skill_type = ?',3).order('person_has_skills.rating desc')
+  end
+
 end

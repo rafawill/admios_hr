@@ -1,2 +1,32 @@
-<h1>Developer#show</h1>
-<p>Find me in app/views/developer/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<%= hidden_field_tag 'developer_id', @developer.id, {id: "developer_id"} %>
+		<table>
+			<tr>
+				<td>
+					<%= get_developer_image(@developer.image_file_name,@developer.id)%>
+				</td>
+				<td> <table>	
+					 <tr>
+						 <td>	
+					      <h3><%= @developer.full_name%></h3>
+					     </td>
+				     </tr> 
+				     <tr><td><img class = "developer_icon" src="/assets/images/mail_16.png" /><%= @developer.email%></td></tr>
+				     <tr><td><img class = "developer_icon" src="/assets/images/skype_16.png" />dev.contact</td></tr>
+				     <tr><td><img class = "developer_icon" src="/assets/images/old20.png" /></span><%= @developer.home_number%></td></tr>
+				 </table>
+				</td>
+			</tr>
+		</table>
+
+		<div class="container">
+
+			<%= render 'developer_skill' %>	
+			<%= render 'developer_project' %>	
+		</div>
+
+	</div>
+	<div id="show-new-developer-skill"></div>
+	<div id="show-new-developer-project"></div>
+</div>

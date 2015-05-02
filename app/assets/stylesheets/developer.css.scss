@@ -1,3 +1,66 @@
 // Place all the styles related to the Developer controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.developer_icon{
+	display: inline;
+	margin-right:10px;
+}
+.developer-skill-badge{
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  border:#000 solid 1px;
+}
+.badge-success{
+	@extend .developer-skill-badge;
+	background-color: #5cb85c;
+}
+.badge-danger{
+	@extend .developer-skill-badge;
+	background-color: #d9534f;
+}
+.badge-warning{
+	@extend .developer-skill-badge;
+	background-color: #f0ad4e;
+}
+
+div#show_developer_skill{
+	width: 400px;
+  float: left;
+}
+div#show_developer_project{
+  margin-left: 140px; 
+  width: 400px;
+  float:left;
+}
+.developer-tabpanel{
+	width: 300px;
+	margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 252px;
+  overflow-y:auto;
+
+}
+
+.project-tabpanel{
+  width: 450px;
+  margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+table#project-projets td {
+    white-space: nowrap;
+}
+
+.hide{
+	display: none;
+}

@@ -1,0 +1,38 @@
+<!-- Modal -->
+<div class="modal fade" id="new-developer-skill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Associate Skill to <%= @developer.full_name %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+         <div class="col-md-12">
+          <div class="form-group">
+                <%= label_tag :Skill %> </br>
+                <%= select_tag(:skill_id, options_for_select(@developer_available_skills.collect {|u| [ u.name, u.id ] }) ,{ class:  'form-control'})  %>
+            </div>
+
+          <div class="form-group">
+                <%= label_tag :Skill_Level %> </br>
+                <%= select_tag(:rating, options_for_select(PersonHasSkill.skill_ratings.map {|key, id| [key.titleize, id ]}) ,{ class:  'form-control'})  %>
+            </div> 
+            <div class="form-group">
+                <%= label_tag :Number_of_projects %> </br>
+                <%= select_tag(:projects, options_for_select((0..10)) , { class:  'form-control'})  %>
+            </div> 
+             <div class="form-group">
+              <%= label_tag :Additional_notes %>
+              <%= text_area :note,:person_has_skill ,rows: 5, class: 'form-control' %>
+            </div>   
+         </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="save-developer-skill" type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<tbody id="<%=get_skill_type(@skill[:skill_type])%>">
+<% @person_skill_language.each do |skill|%>
+    			<tr id="show_<%=skill.id%>">
+                    <td><%=skill.name%></td> <td><%= skill_badge(skill.person_has_skills.person_attributes(@developer.id).rating) %></td>
+                    <td><%=link_to image_tag("/assets/images/edit_16.png", :class => 'developer_icon', :alt => '', :title => ''),
+                     'javascript:',:class => 'developer_edit',:id => "#{skill.id}" %>
+                     <%= link_to image_tag("/assets/images/delete_16.png", :class => 'developer_icon', :alt => '', :title => ''),
+                     'javascript:',:class => 'delete-developer-skill',:id => "#{skill.person_has_skills.person_attributes(@developer.id).id}",data: { id:"#{skill.id}"}%>
+                     </td>
+                    </tr>
+                    <tr class="hide" id="edit_<%=skill.id%>">
+                        <td>
+                            <%=skill.name%>
+                        </td>
+                        <td><%= select_tag("rating", options_for_select(PersonHasSkill.skill_ratings.map {|key, id| [id, id] },skill.person_has_skills.person_attributes(@developer.id).rating),{id: "rating#{skill.id}" })%>
+                            <%= hidden_field_tag 'person_has_skill_id', skill.person_has_skills.person_attributes(@developer.id).id, {id: "person_has_skill_id#{skill.id}"} %>
+                        </td>
+                            
+                        <td>
+                            <%= link_to("update", "javascript:",{class: " update-developer-skill btn btn-primary btn-xs", id: "update_#{skill.id}",data: { id:"#{skill.id}"}})%>
+                            <button data-id="<%=skill.id%>" type="button" class="btn btn-danger btn-xs btn-cancel">cancel</button>    
+                        </td>
+                    </tr>
+    			<% end%>
+</tbody>

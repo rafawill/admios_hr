@@ -16,7 +16,7 @@
               <tr>
                 <th scope="row"><%= i + 1%></th>
                 <td>
-    					<%= developer.name.to_s + ' ' + developer.last_name.to_s %> 
+    					<%= link_to developer.name.to_s + ' ' + developer.last_name.to_s, developer_path(developer) %> 
       				</td>
       				<td>
                 <%= link_to("Manage Projects", developer_developer_has_projects_path(developer), :class => 'button-xs btn-warning') %>
