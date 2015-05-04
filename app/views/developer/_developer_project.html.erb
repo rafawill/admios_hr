@@ -3,33 +3,38 @@
 
 <ul class="nav nav-pills" id="skill_tab">
        <li role="presentation" class="active"><a id="account_tab" href="#account" role="tab" data-toggle="tab" aria-controls="account" aria-expanded="true">Accounts</a></li>
-       <li role="presentation"><a id="framework_tab" href="#internal" role="tab" data-toggle="tab" aria-controls="internal" aria-expanded="true">Internals</a></li>
+       <!-- <li role="presentation"><a id="internal_tab" href="#internal" role="tab" data-toggle="tab" aria-controls="internal" aria-expanded="true">Internals</a></li> -->
 </ul>
 <div class="tab-content">
     	<div role="tabpanel" class="project-tabpanel tab-pane fade active in" id="account" aria-labelledby="account-tab">
     		<table class="table" id="project-projets">
+                <tbody id="tbody_project-projets">
     			<% @developer.person_has_projects.each do |project|%>
 
-    			<tr id="project_show<%=project.id%>">
+    			<tr id="project_show<%=project.id%>" data-date="<%= project.finish_date%>">
     				<td class="col-xs-2"><%=project.project.name%></td>
     				<td><%=project.start_date.strftime("%b %d, %Y")%></td>
-    				<td><%= project.finish_date.strftime("%b %d, %Y")%></td>
-    				<td><%=link_to image_tag("/assets/images/edit_16.png", :class => 'developer_icon', :alt => '', :title => ''),
+    				<td><%= project.finish_date.try(:strftime, "%b %d, %Y")%></td>
+    				<td>
+                        <%=link_to image_tag("/assets/images/edit_16.png", :class => 'developer_icon', :alt => '', :title => ''),
                      'javascript:',:class => 'project_edit',:id => "#{project.id}" %>
                      <%= link_to image_tag("/assets/images/delete_16.png", :class => 'developer_icon', :alt => '', :title => ''),
                      'javascript:',:class => 'delete-developer-project',:id => "#{project.id}"%>
+                     <%= show_current_project(project.current_project)%>
                  </td>
     			</tr>
-    			<tr id="project_edit<%=project.id%>" class="hide">
+    			<tr id="project_edit<%=project.id%>" class="hide" data-date="<%= project.finish_date%>">
     				<td class="col-xs-2"><%=project.project.name%></td>
     				<td class="col-xs-2"><%=date_field("project_has_skill#{project.id}", "start_date",{value: project.start_date, class: "form-control"} )%></td>
     				<td class="col-xs-2"><%=date_field("project_has_skill#{project.id}", "finish_date",{value: project.finish_date, class: "form-control"} )%></td>
     				<td>
+<%= check_box_tag("current_project#{project.id}", project.current_project, project.current_project)%>
     					<%= link_to("update", "javascript:",{class: " update-developer-project btn btn-primary btn-xs", data: { id:"#{project.id}"}})%>
                             <button data-id="<%=project.id%>" type="button" class="btn btn-danger btn-xs btn-project-cancel">cancel</button>
     				</td>
     			</tr>	
     			<% end%>
+             </tbody>
     		</table>	
         </div>
 </div>

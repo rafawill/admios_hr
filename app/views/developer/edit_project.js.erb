@@ -1,17 +1,20 @@
-<tr id="project_show<%=@developer_project.id%>">
+
+<tr id="project_show<%=@developer_project.id%>" data-date="<%= @developer_project.finish_date%>">
     				<td class="col-xs-2"><%=@developer_project.project.name%></td>
     				<td><%=@developer_project.start_date.strftime("%b %d, %Y")%></td>
-    				<td><%= @developer_project.finish_date.strftime("%b %d, %Y")%></td>
+    				<td><%= @developer_project.finish_date.try(:strftime, "%b %d, %Y")%></td>
     				<td><%=link_to image_tag("/assets/images/edit_16.png", :class => 'developer_icon', :alt => '', :title => ''),
                      'javascript:',:class => 'project_edit',:id => "#{@developer_project.id}" %>
                      <%= link_to image_tag("/assets/images/delete_16.png", :class => 'developer_icon', :alt => '', :title => ''),
-                     'javascript:',:class => 'delete-developer-project',:id => "#{@developer_project.id}"%></td>
+                     'javascript:',:class => 'delete-developer-project',:id => "#{@developer_project.id}"%>
+                     <%= show_current_project(@developer_project.current_project)%>
+                     </td>
     			</tr>
-    			<tr id="project_edit<%=@developer_project.id%>" class="hide">
+    			<tr id="project_edit<%=@developer_project.id%>" class="hide" data-date="<%= @developer_project.finish_date%>">
     				<td class="col-xs-2"><%=@developer_project.project.name%></td>
     				<td class="col-xs-2"><%=date_field("project_has_skill#{@developer_project.id}", "start_date",{value: @developer_project.start_date, class: "form-control"} )%></td>
     				<td class="col-xs-2"><%=date_field("project_has_skill#{@developer_project.id}", "finish_date",{value: @developer_project.finish_date, class: "form-control"} )%></td>
-    				<td>
+    				<td><%= check_box_tag("current_project#{@developer_project.id}", @developer_project.current_project, @developer_project.current_project)%>
     					<%= link_to("update", "javascript:",{class: " update-developer-project btn btn-primary btn-xs", data: { id:"#{@developer_project.id}"}})%>
                             <button data-id="<%=@developer_project.id%>" type="button" class="btn btn-danger btn-xs btn-project-cancel">cancel</button>
     				</td>

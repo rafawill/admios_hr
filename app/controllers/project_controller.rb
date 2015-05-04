@@ -45,6 +45,11 @@ class ProjectController < ApplicationController
 	redirect_to project_index_path, :notice => "Project deleted."
   end
 
+  def developer_projects
+    @developers = Person.all
+
+  end  
+
 
   def secure_params
     params.require(:project).permit(:name, :description, :client_id, :start_date, :finish_date ,:website, :github)

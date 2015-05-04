@@ -1,10 +1,7 @@
 <div class="container">
   <div class="row">
     <h3><%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> Skills</h3>
-     <% 
-      #binding.pry
-
-     unless @developer_skills.total_skill == @developer_skills.count  %>
+     <% unless @developer_skills.total_skill == @developer_skills.count  %>
          <div class="row text-right"><%= link_to(" + Associate New Skill ", new_developer_developer_has_skill_path, :method => :get, :class => 'button-xs') %></div>
      <% else %>
         <h6>You already assigned all the available skills to <%=  @developer.name.to_s + ' ' + @developer.last_name.to_s %> </h6>

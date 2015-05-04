@@ -30,9 +30,16 @@ class DeveloperController < ApplicationController
   def update
   	 @developer = Person.find(params[:id])
     if @developer.update_attributes(secure_params)
-      redirect_to developer_index_path, :notice => "Developer updated."
+      
+      respond_to do |format|
+        format.html{redirect_to developer_index_path, :notice => "Developer updated."}
+        format.json { render json: @developer }
+      end
     else
-      render :action => 'edit'
+      respond_to do |format|
+        format.html {render :action => 'edit'}
+        format.json { render json: @developer.errors, :status => 500 }
+      end
     end
   end
 
@@ -73,7 +80,7 @@ class DeveloperController < ApplicationController
 
   def edit_project
     @developer_project = PersonHasProject.find(params[:person_has_project_id])
-    update_params = {start_date: params[:start_date], finish_date: params[:finish_date]}
+    update_params = {start_date: params[:start_date], finish_date: params[:finish_date],current_project: params[:current_project]}
     if @developer_project.update_attributes(update_params)
       respond_to do |format|
          format.js
@@ -119,9 +126,10 @@ class DeveloperController < ApplicationController
                       @developer.person_mobile_skill
                    end
     if @developer_skill.save
-        flash[:notice] = "Skill Association Created!"
+        flash.now[:notice] = "Skill Association Created!"
     else
-
+     flash.now[:error] = "note can't be null"
+     render :json => @developer_skill.errors, :status => 500
     end  
   end  
 
@@ -131,9 +139,9 @@ class DeveloperController < ApplicationController
     @developer_project.person_id = params[:id]
     @developer = Person.find(params[:id])
     if @developer_project.save
-      flash[:notice] = "Project Association Created!"
+      flash.now[:notice] = "Project Association Created!"
     else
-
+      render :json => @developer_project.errors, :status => 500
     end  
   end  
 

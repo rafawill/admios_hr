@@ -45,4 +45,11 @@ class Person < ActiveRecord::Base
   	self.skill.where('skill_type = ?',3).order('person_has_skills.rating desc')
   end
 
+  def could_add_skill
+    total_skill = Skill.all.count
+    total_person_skill = self.person_has_skills.count
+    return false if total_skill == total_person_skill
+    return true if total_person_skill < total_skill
+  end
+
 end

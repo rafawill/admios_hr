@@ -14,7 +14,7 @@ class DeveloperHasSkillsController < ApplicationController
   def new
      @developer = Person.find(params[:developer_id])
      @developer_skills_list = PersonHasSkill.where('person_id = ?', params[:developer_id])
-     @developer_available_skills = Skill.where('id not in (?)', @developer_skills_list.map(&:skill_id).nil? ? @developer_skills_list.map(&:skill_id) : 0)
+     @developer_available_skills = Skill.where('id not in (?)', @developer_skills_list.map(&:skill_id).empty? ? 0 : @developer_skills_list.map(&:skill_id))
      @developer_skill = PersonHasSkill.new
   end
 
@@ -29,7 +29,7 @@ class DeveloperHasSkillsController < ApplicationController
     else
       @developer = Person.find(params[:developer_id])
       @developer_skills_list = PersonHasSkill.where('person_id = ?', params[:developer_id])
-      @developer_available_skills = Skill.where('id not in (?)', @developer_skills_list.map(&:skill_id).nil? ? @developer_skills_list.map(&:skill_id) : 0)
+      @developer_available_skills = Skill.where('id not in (?)', @developer_skills_list.map(&:skill_id).empty? ? 0 : @developer_skills_list.map(&:skill_id))
       render :action => 'new'
     end
   end
