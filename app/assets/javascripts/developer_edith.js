@@ -126,7 +126,7 @@ e.preventDefault();
 	var home_number = $( "#person_home_number").val();
 	var developer_id = $( "#developer_id" ).val();
 	var self = this;
-	var params = {person:{name:full_name[0],last_name: full_name[1], email: email, home_number:home_number }};
+	var params = {person:{name:full_name[0],last_name: full_name[1], email: email, home_number: home_number, skype: skype }};
 	$.ajax({
 	  type: "PUT",
 	  url: "/developer/"+developer_id,
@@ -156,7 +156,7 @@ e.preventDefault();
 	   $(self).addClass('edit-developer');
 	   $("#edit_name").html(data.name + " " + data.last_name);
 	   $("#edit_email").html(data.email);
-	   $("#edit_skype").html(skype);
+	   $("#edit_skype").html(data.skype);
 	   $("#edit_home_number").html(data.home_number)
 	  }
 	});

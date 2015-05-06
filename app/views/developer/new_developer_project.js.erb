@@ -14,6 +14,10 @@
           <%= select_tag(:project_id, options_for_select(@developer_available_projects.collect {|u| [ u.name, u.id ] }) , { class:  'form-control'})  %>
          </div> 
          <div class="form-group">
+          <%= label_tag :Developer_condition %> </br>
+          <%= select_tag(:developer_condition, options_for_select(PersonHasProject.developer_conditions.map {|key, id| [key.titleize, key ]}),{ class:  'form-control'}) %>
+         </div>
+         <div class="form-group">
           <%= label_tag :Start_Date %>
           <%= date_field :start_date, :start_date,class: 'form-control' %>
          </div>

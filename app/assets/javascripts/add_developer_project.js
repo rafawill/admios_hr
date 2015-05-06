@@ -25,11 +25,12 @@ $(document).on( 'click', '#save-developer-project', function(e){
 	var finish_date = $("#finish_date_finish_date").val();
 	var current_project = $('#current_project_person_has_project').is(':checked');
 	var note = $("#note_person_has_project").val();
+	var developer_condition = $("#developer_condition").val();
 
 	$.ajax({
 	  type: "POST",
 	  url: "/developer/"+id+"/create_developer_project",
-	  data:{id: id, project_id:project_id, start_date: start_date, finish_date: finish_date, note: note, current_project: current_project},
+	  data:{id: id, project_id:project_id, start_date: start_date, finish_date: finish_date, note: note, current_project: current_project, developer_condition: developer_condition},
 	  async: true,
 	  dataType: "html",
 	  error: function(request, textStatus, errorThrown) {

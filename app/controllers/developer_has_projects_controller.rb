@@ -70,6 +70,6 @@ class DeveloperHasProjectsController < ApplicationController
   end
 
   def secure_params
-    params.require(:person_has_project).permit(:person_id, :project_id, :start_date, :finish_date, :note, :current_project)
+    params.require(:person_has_project).permit(:person_id, :project_id, :start_date, :finish_date, :note, :current_project, :developer_condition)
   end
 end

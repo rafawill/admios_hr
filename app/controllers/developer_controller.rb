@@ -134,7 +134,7 @@ class DeveloperController < ApplicationController
   end  
 
   def create_developer_project
-    update_secure = {project_id: params[:project_id], start_date: params[:start_date], note: params[:note], finish_date: params[:finish_date], current_project: params[:current_project] } 
+    update_secure = {project_id: params[:project_id], start_date: params[:start_date], note: params[:note], finish_date: params[:finish_date], current_project: params[:current_project], developer_condition: params[:developer_condition]} 
     @developer_project = PersonHasProject.new(update_secure)
     @developer_project.person_id = params[:id]
     @developer = Person.find(params[:id])
@@ -164,7 +164,7 @@ class DeveloperController < ApplicationController
   end
     
   def secure_params
-    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :country_id, :document_type_id, :id_number, :birth_day, :image)
+    params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :country_id, :document_type_id, :id_number, :birth_day, :image, :skype)
   end
 
 

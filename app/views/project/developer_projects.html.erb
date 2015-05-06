@@ -1,10 +1,40 @@
-<table>
+<table class="table">
 <thead>
-<th>Team Member<th>	
+<th>Team Member</th>	
+	<% @month_range.each do | month|%>
+<th><%= month%></th>
+	<%end%>
 </thead>	
 <tbody>	
-	<%@developers.each do |person| %>
-<tr><td><%= person.full_name%></td></tr>
+<tr>
+<td>Total Billable</td>
+
+<%@total_billables.each do |total|%>
+	<td><%=total.second%></td>
 <%end%>
+</tr>
+<tr>
+<td>Total Project (include yellow)</td>
+<%@total_projects.each do |total|%>
+	<td><%=total.second%></td>
+<%end%>
+</tr>
+<tr>
+<td>Bench</td>	
+<%@total_bench.each do |total|%>
+	<td><%=total.second%></td>
+<%end%>
+</tr>	
+<tr>
+<td colspan="13">&nbsp;</td>	
+</tr>
+	<%@developers.each do |person| %>
+      <tr><td><%= person.full_name%></td>
+	    <% person.developer_in_project.each do |a|%>
+			<td class ="<%= fill_background(a[1].blank? ? a[1] : a[1].first[:developer_condition])%>"><%=a[1].blank? ? "" : a[1].first.project.name%></td>
+	    <%end%>	
+	  </tr>  	
+   <%end%>
+
 </tbody>
 </table>	
