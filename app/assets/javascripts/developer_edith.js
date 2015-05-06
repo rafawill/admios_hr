@@ -33,7 +33,7 @@ $(document).on( 'click', '.update-developer-skill', function(e){
 	  	 
 	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#edit_'+skill_id ).index()+')').remove();
 	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#show_'+skill_id ).index()+')').remove()
-	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#show_'+skill_id ).index()+')').after(data);
+	  	 $("#tbody_"+table_id).append(data);
 
 	  	 var tbody = $("#tbody_"+table_id).children();
 	  	 tbody.sort(function(a, b) {
@@ -83,7 +83,7 @@ $(document).on( 'click', '.update-developer-project', function(e){
 	  	 
 	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_edit'+person_has_project ).index()+')').remove();
 	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_show'+person_has_project ).index()+')').remove();
-	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_show'+person_has_project ).index()+')').after(data);
+	  	 $("#tbody_"+table_id).append(data);
 	  	 var tbody = $("#tbody_"+table_id).children();
 	  	 tbody.sort(function(a, b) {
 		        var keyA = new Date($(a).data('date'));
@@ -92,6 +92,8 @@ $(document).on( 'click', '.update-developer-project', function(e){
 				if (keyA > keyB) return -1;
 				return 0;
 		});
+	  	 console.log(data);
+	  	 console.log(tbody);
 	  	 $('#tbody_'+table_id).html(tbody);
 
 	  }

@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
 
 
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>", :small => "50x50>" },
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "128x128>", :small => "50x50>" },
                       :url  => "/assets/developer/:id/:style/:basename.:extension",
                       :path => ":rails_root/public/assets/developer/:id/:style/:basename.:extension"
 
