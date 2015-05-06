@@ -8,6 +8,15 @@
       </div>
       <div class="modal-body">
         <div class="row">
+        <% if @developer_skill.errors.any? %>
+          <div id="error_explanation">
+          <ul>
+          <% @developer_skill.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+          </div>
+      <% end %>
          <div class="col-md-12">
           <div class="form-group">
                 <%= label_tag :Skill %> </br>

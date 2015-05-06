@@ -20,6 +20,10 @@
 	        <%= f.select(:project_id, options_for_select([@developer_project.project.name, @developer_project.project_id]) , {},{ class:  'form-control', :disabled => true})  %>
          </div> 
          <div class="form-group">
+                <%= f.label :Developer_Condition %> </br>
+                <%= f.select(:developer_condition, PersonHasProject.developer_conditions.map {|key, id| [key.titleize, key ]} , {},{ class:  'form-control'})  %>
+        </div> 
+         <div class="form-group">
 	        <%= f.label :Start_Date %>
 	        <%= f.date_field :start_date, class: 'form-control' %>
       	 </div>

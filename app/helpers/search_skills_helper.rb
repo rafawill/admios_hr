@@ -19,4 +19,20 @@ module SearchSkillsHelper
           label_tag nil, 'Available', class: 'label label-success'
 	    end	
 	end	
+
+	def fill_background(obj)
+
+		class_color = if(obj.blank?)
+			'dev-unbillabel'
+		elsif (obj == 0)
+			'dev-placed'
+		elsif (obj == 1)
+			'dev-unbillabel'
+		elsif (obj == 2)
+			'avalible-not-confirmed'	
+		else
+			'placed-not-billable'								
+		end	
+
+	end	
 end

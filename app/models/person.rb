@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
 
 
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>", :small => "50x50>" },
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "128x128>", :small => "50x50>" },
                       :url  => "/assets/developer/:id/:style/:basename.:extension",
                       :path => ":rails_root/public/assets/developer/:id/:style/:basename.:extension"
 
@@ -44,5 +44,26 @@ class Person < ActiveRecord::Base
   def person_mobile_skill
   	self.skill.where('skill_type = ?',3).order('person_has_skills.rating desc')
   end
+
+  def could_add_skill
+    total_skill = Skill.all.count
+    total_person_skill = self.person_has_skills.count
+    return false if total_skill == total_person_skill
+    return true if total_person_skill < total_skill
+  end
+
+  def developer_in_project
+    date = DateTime.new(2015)
+    start_month = date.beginning_of_month
+    end_month = date.end_of_month
+    new_data_arr = []
+    person_has_project = {}
+    (1..12).each do |month|
+      person_has_project[start_month.strftime("%b")] = self.person_has_projects.where(" ((start_date between ? and ?) or (start_date <= ? and finish_date >= ?) or (finish_date between ? and ?))", start_month, end_month, start_month, end_month, start_month, end_month).group("month(start_date)")
+      start_month = start_month.next_month().beginning_of_month
+      end_month = end_month.next_month().end_of_month
+    end 
+    person_has_project
+  end  
 
 end

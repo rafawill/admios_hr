@@ -11,4 +11,10 @@ module DeveloperHelper
 		    'tbody_mobile-skill'		
 		end
 	end	
+
+	def show_current_project(bool)
+		if bool == true
+		  label_tag nil, 'current', class: 'label badge'
+	    end	
+	end	
 end

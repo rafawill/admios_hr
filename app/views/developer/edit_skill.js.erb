@@ -1,11 +1,11 @@
-<tr id="show_<%=@developer_skill.skill_id%>">
+<tr id="show_<%=@developer_skill.skill_id%>" data-rating="<%=@developer_skill.rating %>">
   <td><%=@skill.name%></td> <td><%= skill_badge(@developer_skill.rating) %></td>
   <td><%=link_to image_tag("/assets/images/edit_16.png", :class => 'developer_icon', :alt => '', :title => ''),'javascript:',:class => 'developer_edit',:id => "#{@developer_skill.skill_id}" %>
 <%= link_to image_tag("/assets/images/delete_16.png", :class => 'developer_icon', :alt => '', :title => ''),
                      'javascript:',:class => 'delete-developer-skill',:id => "#{@developer_skill.id}",data: { id:"#{@developer_skill.skill_id}"}%>
   </td>
 </tr>
-<tr class="hide" id="edit_<%=@developer_skill.skill_id%>">
+<tr class="hide" id="edit_<%=@developer_skill.skill_id%>" data-rating="<%=@developer_skill.rating %>">
    <td>
     <%= select_tag "skill_id", options_from_collection_for_select(@skill_language, "id", "name",@developer_skill.skill_id),{id:"skill_id#{@developer_skill.skill_id}"}%>
     </td>

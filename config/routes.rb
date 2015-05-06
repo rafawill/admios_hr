@@ -25,7 +25,11 @@ Rails.application.routes.draw do
 
   resources :skill
 
-  resources :project
+  resources :project do
+    collection do
+      get "developer_projects"
+     end 
+  end  
 
   resources :client
 
