@@ -14,7 +14,7 @@
             <tr>
                <th scope="row"><%= i + 1 %></th>
               <td>
-      					<%= project.name %> 
+      					<%= project.name %> <span class="label label-primary label-project">Developers <span class="badge"><%= project.person_has_projects.current_projects.count%></span></span>
     				</td>
     				<td>
               <%= link_to("Manage Skills", project_project_has_skills_path(project), :class => 'button-xs btn-success') %>

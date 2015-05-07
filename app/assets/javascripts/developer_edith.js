@@ -15,7 +15,7 @@ $(document).on( 'click', '.update-developer-skill', function(e){
 	var skill_id = $(this).data("id");
 	var developer_id = $( "#developer_id" ).val();
 	var rating = $( "#rating"+skill_id ).val();
-	var person_has_skill = $( "#person_has_skill_id"+skill_id ).val();
+	var person_has_skill_id = $( "#person_has_skill_id"+skill_id ).val();
 
 	var table_id = $('tr#edit_'+skill_id ).parent().parent().attr('id');
 
@@ -23,7 +23,7 @@ $(document).on( 'click', '.update-developer-skill', function(e){
 	$.ajax({
 	  type: "POST",
 	  url: "/developer/"+developer_id+"/edit_skill",
-	  data:{id:developer_id, skill_id:skill_id, rating: rating, person_has_skill: person_has_skill},
+	  data:{person_has_skill_id: person_has_skill_id ,person_has_skill:{skill_id:skill_id, rating: rating }},
 	  async: true,
 	  dataType: "html",
 	  error: function(jqXHR, textStatus, errorThrown) {
@@ -62,18 +62,18 @@ $(document).on( 'click', '.btn-project-cancel', function(e){
 
 $(document).on( 'click', '.update-developer-project', function(e){
 	e.preventDefault();
-	var person_has_project = $(this).data("id");
+	var person_project_id = $(this).data("id");
 	var developer_id = $( "#developer_id" ).val()
-	var start_date = $( "#project_has_skill"+person_has_project+"_start_date" ).val()
-	var finish_date = $( "#project_has_skill"+person_has_project+"_finish_date" ).val()
-    var current_project = $('#current_project'+person_has_project).is(':checked');
-	var table_id = $('tr#project_edit'+person_has_project ).parent().parent().attr('id');
+	var start_date = $( "#project_has_skill"+person_project_id+"_start_date" ).val()
+	var finish_date = $( "#project_has_skill"+person_project_id+"_finish_date" ).val()
+    var current_project = $('#current_project'+person_project_id).is(':checked');
+	var table_id = $('tr#project_edit'+person_project_id ).parent().parent().attr('id');
 
 
 	$.ajax({
 	  type: "POST",
 	  url: "/developer/"+developer_id+"/edit_project",
-	  data:{id:developer_id, start_date:start_date, finish_date: finish_date, person_has_project_id: person_has_project,current_project: current_project},
+	  data:{person_has_project_id:person_project_id ,person_has_project:{start_date:start_date, finish_date: finish_date,current_project: current_project}},
 	  async: true,
 	  dataType: "html",
 	  error: function(jqXHR, textStatus, errorThrown) {
@@ -81,8 +81,8 @@ $(document).on( 'click', '.update-developer-project', function(e){
 	  },
 	  success: function(data, textStatus, jqXHR) {
 	  	 
-	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_edit'+person_has_project ).index()+')').remove();
-	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_show'+person_has_project ).index()+')').remove();
+	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_edit'+person_project_id ).index()+')').remove();
+	  	 $("#"+table_id+" > tbody:last tr:eq("+$( 'tr#project_show'+person_project_id ).index()+')').remove();
 	  	 $("#tbody_"+table_id).append(data);
 	  	 var tbody = $("#tbody_"+table_id).children();
 	  	 tbody.sort(function(a, b) {

@@ -1,5 +1,6 @@
 class DeveloperHasProjectsController < ApplicationController
    before_filter :authenticate_user!
+   before_action :set_current_project, only:[:update, :create]
 
   def index
   	 @developer = Person.find(params[:developer_id])
@@ -71,5 +72,6 @@ class DeveloperHasProjectsController < ApplicationController
 
   def secure_params
     params.require(:person_has_project).permit(:person_id, :project_id, :start_date, :finish_date, :note, :current_project, :developer_condition)
-  end
+  end  
+
 end

@@ -30,7 +30,7 @@ $(document).on( 'click', '#save-developer-project', function(e){
 	$.ajax({
 	  type: "POST",
 	  url: "/developer/"+id+"/create_developer_project",
-	  data:{id: id, project_id:project_id, start_date: start_date, finish_date: finish_date, note: note, current_project: current_project, developer_condition: developer_condition},
+	  data:{person_has_project:{project_id:project_id, start_date: start_date, finish_date: finish_date, note: note, current_project: current_project, developer_condition: developer_condition}},
 	  async: true,
 	  dataType: "html",
 	  error: function(request, textStatus, errorThrown) {

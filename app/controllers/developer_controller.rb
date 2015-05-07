@@ -1,5 +1,6 @@
 class DeveloperController < ApplicationController
 	before_filter :authenticate_user!
+  before_action :set_current_project, only:[:create_developer_project, :edit_project]
 
 
   def index
@@ -57,8 +58,8 @@ class DeveloperController < ApplicationController
   end
 
   def edit_skill
-    @developer_skill = PersonHasSkill.find(params[:person_has_skill])
-    @skill = Skill.find(params[:skill_id])
+    @developer_skill = PersonHasSkill.find(params[:person_has_skill_id])
+    @skill = Skill.find(params[:person_has_skill][:skill_id])
     @skill_language = case @skill[:skill_type].to_i
                    when 0
                       Skill.languages
@@ -69,8 +70,7 @@ class DeveloperController < ApplicationController
                     when 3
                       Skill.mobile
                    end               
-    update_params = {rating: params[:rating]}
-    if @developer_skill.update_attributes(update_params)
+    if @developer_skill.update_attributes(secure_params_developer_skill)
       respond_to do |format|
          format.js
       end
@@ -80,8 +80,7 @@ class DeveloperController < ApplicationController
 
   def edit_project
     @developer_project = PersonHasProject.find(params[:person_has_project_id])
-    update_params = {start_date: params[:start_date], finish_date: params[:finish_date],current_project: params[:current_project]}
-    if @developer_project.update_attributes(update_params)
+    if @developer_project.update_attributes(secure_params_developer_project)
       respond_to do |format|
          format.js
       end
@@ -110,9 +109,8 @@ class DeveloperController < ApplicationController
   end  
 
   def create_developer_skill
-    update_secure = {rating: params[:rating], skill_id: params[:skill_id], note: params[:note], projects: params[:projects] } 
-    @developer_skill = PersonHasSkill.new(update_secure)
-    @skill = Skill.find(params[:skill_id])
+    @developer_skill = PersonHasSkill.new(secure_params_developer_skill)
+    @skill = Skill.find(params[:person_has_skill][:skill_id])
     @developer_skill.person_id = params[:id]
     @developer = Person.find(params[:id])
     @person_skill_language = case @skill[:skill_type].to_i
@@ -134,8 +132,7 @@ class DeveloperController < ApplicationController
   end  
 
   def create_developer_project
-    update_secure = {project_id: params[:project_id], start_date: params[:start_date], note: params[:note], finish_date: params[:finish_date], current_project: params[:current_project], developer_condition: params[:developer_condition]} 
-    @developer_project = PersonHasProject.new(update_secure)
+    @developer_project = PersonHasProject.new(secure_params_developer_project)
     @developer_project.person_id = params[:id]
     @developer = Person.find(params[:id])
     if @developer_project.save
@@ -163,9 +160,17 @@ class DeveloperController < ApplicationController
     flash[:notice] = "delete developer skill"
   end
     
+  private
   def secure_params
     params.require(:person).permit(:name, :last_name, :email, :cel_number , :home_number,:address, :country_id, :document_type_id, :id_number, :birth_day, :image, :skype)
   end
 
+  def secure_params_developer_skill
+    params.require(:person_has_skill).permit(:person_id, :skill_id, :rating, :projects, :note)
+  end
+  
+  def secure_params_developer_project
+    params.require(:person_has_project).permit(:person_id, :project_id, :start_date, :finish_date, :note, :current_project, :developer_condition)
+  end  
 
 end

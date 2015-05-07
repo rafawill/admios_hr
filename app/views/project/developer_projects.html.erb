@@ -30,9 +30,10 @@
 <td colspan="13">&nbsp;</td>	
 </tr>
 	<%@developers.each do |person| %>
-      <tr><td><%= person.full_name%></td>
+      <tr><td><%= link_to person.full_name, developer_path(person) %></td>
 	    <% person.developer_in_project.each do |a|%>
-			<td class ="<%= fill_background(a[1].blank? ? a[1] : a[1].first[:developer_condition])%>"><%=a[1].blank? ? "" : a[1].first.project.name%></td>
+			<td class ="<%= fill_background(a[1].blank? ? a[1] : a[1].first[:developer_condition])%>">
+			<%=a[1].blank? ? "" : link_to(a[1].first.project.name,"javascript:",{data:{ toggle: "tooltip", placement: "top", 'original-title'=> a[1].first.developer_condition.titleize}})%></td>
 	    <%end%>	
 	  </tr>  	
    <%end%>

@@ -32,7 +32,7 @@ $(document).on( 'click', '#save-developer-skill', function(e){
 	$.ajax({
 	  type: "POST",
 	  url: "/developer/"+id+"/create_developer_skill",
-	  data:{id:id,skill_id:skill_id, rating:rating, projects:projects, note:note},
+	  data:{person_has_skill:{skill_id:skill_id, rating:rating, projects:projects, note:note}},
 	  async: true,
 	  dataType: "html",
 	  error: function(request, textStatus, errorThrown) {
