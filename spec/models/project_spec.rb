@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe Project do
 
 	context 'validation' do
@@ -13,7 +12,6 @@ describe Project do
     end
 
     context 'association with' do
-
 	 	it { should have_many(:project_has_skills) }
 	 	it { should have_many(:person_has_projects) }
 	 	it { should belong_to(:client) }

@@ -32,7 +32,7 @@ class DeveloperHasProjectsController < ApplicationController
     else
       @developer = Person.find(params[:developer_id])
       @developer_projects_list = PersonHasProject.list_developer_projects(params[:developer_id])
-      @developer_available_projects = Project.where('id not in (?)', @developer_projects.map(&:project_id).nil? ? @developer_projects.map(&:project_id) : 0)
+      @developer_available_projects = Project.where('id not in (?)', @developer_projects_list.map(&:project_id).nil? ? @developer_projects.map(&:project_id) : 0)
       render :action => 'new'
     end
   end

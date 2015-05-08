@@ -24,7 +24,7 @@ class DeveloperController < ApplicationController
 
   def edit
   	 @developer      = Person.find(params[:id])
-	 @document_types = DocumentType.all
+	   @document_types = DocumentType.all
   end
 
 

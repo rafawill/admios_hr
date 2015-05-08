@@ -18,6 +18,27 @@ RSpec.describe DeveloperController, :type => :controller do
 	  end	
 	end
 
+	describe "GET edit" do
+		before :each do
+           @developer = create(:person, name: "Jhon", last_name: "Doe")
+        end
+
+	   	it "assigns @developer" do
+	      	get :edit, id: @developer.id
+	    	expect(assigns(:developer)).to eq(@developer)     
+	    end
+
+	    it "assigns @document_types" do
+	   		document_types = DocumentType.all
+	      	get :edit, id: @developer.id
+	    	expect(assigns(:document_types)).to eq(document_types)     
+	    end
+
+	    it "renders the :edit view" do
+		    get :edit, id: @developer.id
+		    expect(response).to render_template("edit")
+		end
+    end
 
 	describe "POST create" do
 	    context "with valid attributes" do
@@ -48,11 +69,11 @@ RSpec.describe DeveloperController, :type => :controller do
 	  end	
     end
 
-
 	describe "Put Update" do
 		before :each do
            @developer = create(:person, name: "Jhon", last_name: "Doe")
         end
+
 		context "valid attributes" do
 		    it "located the requested @developer" do
 		      put :update, id: @developer, person: attributes_for(:person)
@@ -112,6 +133,26 @@ RSpec.describe DeveloperController, :type => :controller do
 		    expect(flash[:notice]).to eq('Developer deleted.')
 		    expect(response.location).to redirect_to(developer_index_path)
 		  end
+	end
+
+	describe 'New Developer Skill' do
+		before :each do
+			@developer = create(:person)
+			@skill = create(:skill)
+		end
+		  
+		it "assigns @developer" do
+	      	xhr :get, :new_developer_skill, id: @developer.id
+	    	expect(assigns(:developer)).to eq(@developer)     
+	    end
+
+	    it "assigns @developer_available_skills" do
+	    	create(:person_has_skill,:skill,:person)
+			developer_skill_test = PersonHasSkill.where('person_id = ?', @developer.id)
+			developer_available_skills = Skill.where('id not in (?)', developer_skill_test.map(&:skill_id).empty? ? 0 :  developer_skill_test.map(&:skill_id))
+	      	xhr :get, :new_developer_skill, id: @developer.id
+	    	expect(assigns(:developer_available_skills)).to eq(developer_available_skills)     
+	    end		    
 	end
 
 end	

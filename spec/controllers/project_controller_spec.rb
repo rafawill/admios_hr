@@ -18,7 +18,6 @@ RSpec.describe ProjectController, :type => :controller do
 	  end	
 	end
 
-
 	describe "POST create" do
 	    context "with valid attributes" do
 		    it "creates a new project" do
@@ -111,6 +110,49 @@ RSpec.describe ProjectController, :type => :controller do
 		    expect(flash[:notice]).to eq('Project deleted.')
 		    expect(response.location).to redirect_to(project_index_path)
 		  end
+	end
+
+	describe 'DEVELOPER_PROJECTS project' do
+		  before :each do
+		    @project = create(:project)
+		  end
+
+		  it "assigns @developers" do
+		    developers = Person.all
+		    get :developer_projects
+		    expect(assigns(:developers)).to eq(developers)
+		  end
+
+		  it "assigns @month_range" do
+		    month_range =   Date.today.beginning_of_year..Date.today.end_of_year
+    		generate_month = month_range.map(&:beginning_of_month)
+		    month_range = generate_month.map { |dates| dates.strftime("%b") }.uniq
+		    get :developer_projects
+		    expect(assigns(:month_range)).to eq(month_range)
+		  end
+
+		  it "assigns @total_billables" do
+		    list = PersonHasProject.total_billables
+		    get :developer_projects
+		    expect(assigns(:total_billables)).to eq(list)
+		  end
+
+		  it "assigns @total_projected" do
+		    list = PersonHasProject.total_projected
+		    get :developer_projects
+		    expect(assigns(:total_projects)).to eq(list)
+		  end
+
+		  it "assigns @total_bench" do
+		    list = PersonHasProject.total_bench
+		    get :developer_projects
+		    expect(assigns(:total_bench)).to eq(list)
+		  end
+		  
+		  it "renders the :developer_projects view" do
+		    get :developer_projects
+		    expect(response).to render_template("developer_projects")
+		  end	
 	end
 
 end	

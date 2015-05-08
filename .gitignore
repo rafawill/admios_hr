@@ -21,3 +21,4 @@ public/assets/user/
 public/assets/developer/
 config/database.yml
 *.DS_Store
+coverage
