@@ -25,4 +25,64 @@ describe Person do
 
  end	
 
+context 'full_name' do
+ 	subject(:person) {build(:person)} 
+ 	it { expect(person.full_name).to eq(person.name + " " + person.last_name) }
+end
+
+context 'could_add_skill' do
+
+	context 'has all the available skills' do
+		subject(:person) {create(:person_with_skills, skills_counts: 2)} 
+ 		it { expect(person.could_add_skill).to eq(false) }
+ 	end
+
+ 	context 'has some skills left' do
+ 		subject(:person) {create(:person_with_skills, skills_counts: 1)} 
+ 		subject {create(:skill)}
+
+ 		before :each do
+    		create(:skill, name: "A", skill_type: 0)
+    	end
+
+ 		it { expect(person.could_add_skill).to eq(true) }
+ 	end
+end
+
+context 'skills' do
+
+	context 'has language skills' do
+		subject(:person) {create(:person_with_language_skill)} 
+ 		it { expect(person.person_language_skill.count).to  eq(1) }
+ 		it { expect(person.person_framework_skill.count).to eq(0) }
+ 		it { expect(person.person_data_skill.count).to      eq(0) }
+ 		it { expect(person.person_mobile_skill.count).to    eq(0) }
+ 	end
+
+ 	context 'has framework skills' do
+		subject(:person) {create(:person_with_framework_skill)} 
+ 		it { expect(person.person_language_skill.count).to  eq(0) }
+ 		it { expect(person.person_framework_skill.count).to eq(1) }
+ 		it { expect(person.person_data_skill.count).to      eq(0) }
+ 		it { expect(person.person_mobile_skill.count).to    eq(0) }
+ 	end
+
+ 	context 'has data skills' do
+		subject(:person) {create(:person_with_data_skill)} 
+ 		it { expect(person.person_language_skill.count).to  eq(0) }
+ 		it { expect(person.person_framework_skill.count).to eq(0) }
+ 		it { expect(person.person_data_skill.count).to      eq(1) }
+ 		it { expect(person.person_mobile_skill.count).to    eq(0) }
+ 	end
+
+ 	context 'has mobile skills' do
+		subject(:person) {create(:person_with_mobile_skill)} 
+ 		it { expect(person.person_language_skill.count).to  eq(0) }
+ 		it { expect(person.person_framework_skill.count).to eq(0) }
+ 		it { expect(person.person_data_skill.count).to      eq(0) }
+ 		it { expect(person.person_mobile_skill.count).to    eq(1) }
+ 	end
+end
+
+
 end	

@@ -15,8 +15,9 @@ describe PersonHasSkill do
 
  context 'lists developer skills ' do
  	before(:each) do
-    create(:person_has_skill,:skill,:person)
+    	create(:person_has_skill,:skill,:person)
     end
+    
  	it 'give id and get the developer' do
  		create(:person_has_skill,:skill,:person)
  		person_has_skill = PersonHasSkill.get_person_skill(PersonHasSkill.all.map(&:skill_id))

@@ -58,6 +58,7 @@ class DeveloperController < ApplicationController
   end
 
   def edit_skill
+    binding.pry
     @developer_skill = PersonHasSkill.find(params[:person_has_skill_id])
     @skill = Skill.find(params[:person_has_skill][:skill_id])
     @skill_language = case @skill[:skill_type].to_i
