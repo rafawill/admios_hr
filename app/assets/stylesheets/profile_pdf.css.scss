@@ -1,0 +1,91 @@
+@import 'bootstrap/variables';
+@import 'bootstrap/print';
+@media screen {
+  body {
+    background-color: #FFF;
+  }
+h5{
+  display: block;
+  font-size: 0.99em;
+  -webkit-margin-before: 1.67em;
+  -webkit-margin-after: 1.67em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}  
+.project-title{
+ 	font-size: 18px;
+ 	width: 104px;
+ 	white-space: nowrap;
+ 	float: left;
+ }
+ .project-date{
+ 	font-size: 14px;
+ 	padding-left: 18px;
+ 	width: 196px;
+ 	float: left;
+ }
+.title{
+	font-size: 24px;
+	height: 50px;
+	padding-bottom: 200px;
+	margin-bottom: 200px;
+}
+.projects{
+	padding-top: 5px;
+	padding-bottom: 20px;
+	width: 100%
+}
+.project-container{
+	margin-top: 20px;
+}
+.developer-skill-badge{
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+  border:#000 solid 1px;
+}
+.badge-success{
+	@extend .developer-skill-badge;
+	background-color: #5cb85c;
+}
+.badge-danger{
+	@extend .developer-skill-badge;
+	background-color: #d9534f;
+}
+.badge-warning{
+	@extend .developer-skill-badge;
+	background-color: #f0ad4e;
+}
+#language-skill,#framework-skill,.skills-container{
+	width: 100%;
+}
+.skill-name{
+	width: 86px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	float: left;
+}
+.skill-rating{
+	width: 10px;
+}
+.skill{
+	clear: both;
+	margin-top: 30px;
+}
+.skills-container{ 
+	width: 100%;
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 86px;
+}
+}

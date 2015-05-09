@@ -4,7 +4,7 @@
 		<table>
 			<tr>
 				<td>
-					<%= get_developer_image(@developer.image_file_name,@developer.id)%>
+					<%= image_tag(get_developer_image(@developer.image_file_name,@developer.id))%>
 				</td>
 				<td> <table>	
 					 <tr>
@@ -12,6 +12,8 @@
 					      <h3><span id="edit_name"><%= @developer.full_name%></span>
 					      	<%=link_to image_tag("/assets/images/edit_16.png", :class => 'developer_icon', :id => 'change_edit', :title => ''),
                      'javascript:',:class => 'edit-developer',:id => "#{@developer.id}" %>
+
+                     <%=link_to image_tag("/assets/images/4pdf-16.png", :class => 'developer_icon', :id => '', :title => ''),'javascript:',:class => 'developer-export',:id => "pdf_export" %>
 					      </h3>
 					     </td>
 				     </tr> 
@@ -36,20 +38,54 @@
 	</div>
 	<div id="show-new-developer-skill"></div>
 	<div id="show-new-developer-project"></div>
+
 	<div id="no-add" class="modal fade" aria-hidden="true" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Messages</h4>
-      </div>
-      <div class="modal-body">
-        <p id="developer-message"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Messages</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p id="developer-message"></p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div id="pdf-profile" class="modal fade" aria-hidden="true" role="dialog">
+		<div class="modal-dialog">
+	      <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Export Profile</h4>
+	      </div>
+	      <%= form_tag(developer_profile_developer_path(@developer), method: "post",id: 'exportsubmit') do %>
+	      <div class="modal-body">
+		        <div class="col-md-12">
+
+			        <div class="form-group"></br>
+		                <%= label_tag :Skill_Level %> </br>
+		                <%= select_tag(:rating, options_for_select(PersonHasSkill.skill_ratings.map {|key, id| [key.titleize, id ]}) ,{include_blank: true, class:  'form-control'})  %>
+		            </div>
+		            <div class="form-group">
+			          <%= label_tag :start_date  %>
+			          <%= date_field_tag :start_date,nil ,class: 'form-control' %>
+			          <%= hidden_field_tag 'format', 'pdf'%>
+			         </div>
+		        </div>    
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button id="export-developer-profile" type="button" class="btn btn-primary">Save</button>
+	      </div>
+	      <% end %>
+	    </div>
+	  </div>
+
+	</div>
+
 </div>
