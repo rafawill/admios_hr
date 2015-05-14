@@ -1,0 +1,97 @@
+<meta charset='utf-8' />
+<%= wicked_pdf_stylesheet_link_tag "profile_pdf.css" %>
+<div class="container">
+	<div class="row">
+		<table>
+			<tr>
+				<td>
+					<%= wicked_pdf_image_tag(get_developer_image(@developer.image_file_name,@developer.id),{height: 128,width: 100, class: "img-rounded"})%>
+				</td>
+				<td> <table>	
+					 <tr>
+						 <td>	
+					      <h2><%= @developer.full_name%></h2>
+					     </td>
+				     </tr> 
+				     <tr><td><%= wicked_pdf_image_tag '/assets/images/mail_16.png' %>
+				     	<span id="edit_email"><%= @developer.email%></span></td></tr>
+				     <tr><td><%= wicked_pdf_image_tag  src="/assets/images/skype_16.png" %>
+				     	<span id="edit_skype"><%= @developer.skype%></span>
+				     </td></tr>
+				     <tr><td><%= wicked_pdf_image_tag "/assets/images/old20.png" %>
+				     	<span id="edit_home_number"><%= @developer.home_number%><span></td></tr>
+				 </table>
+				</td>
+			</tr>
+		</table>
+	</div>	
+	<div class="row">
+		<%unless @developer_project.empty? %>
+		<div class="project">
+			<span class="title">Projects</span>
+			<div class="project-container">
+				
+				<% @developer_project.each do |person_project|%>
+				<div class="projects">
+					<div class="project-title"><%=person_project.project.name%></div>
+					<div class="project-date"><%= person_project.start_date.try(:strftime, "%b %d, %Y")%> - <%= date_present(person_project.finish_date)%></div>
+				</div>	
+				<%end%>	
+			</div>
+		</div>
+		<%end%>
+		<div class="skill">
+			<%unless @developer.person_has_skills.empty?%>
+			<span class="title">Skills</span>
+			<%end%>
+			<%unless @person_language_skill.empty?%>
+			<div class="skills-container">
+				<h5>Languages</h5>
+				<div id="language-skill">
+				<% @person_language_skill.each do |skill|%>
+				<div class="skill-name"><%=skill.name%>
+				<div class="skill-rating"><%= skill_badge(skill.person_has_skills.person_attributes(@developer.id).rating) %></div>
+				</div>
+				<%end%>
+			   </div>
+			</div>
+			<%end%>
+			<%unless @person_framework_skill.empty?%>
+			<div class="skills-container">
+				<h5>frameworks</h5>
+				<div id="framework-skill">
+				<% @person_framework_skill.each do |skill|%>
+				<div class="skill-name"><%=skill.name%>
+				<div class="skill-rating"><%= skill_badge(skill.person_has_skills.person_attributes(@developer.id).rating) %></div>
+				</div>
+				<%end%>
+			   </div>
+			</div>
+			<%end%>
+			<%unless @person_data_skill.empty?%>
+			<div class="skills-container">
+				<h5>Databases</h5>
+				<div id="framework-skill">
+				<% @person_data_skill.each do |skill|%>
+				<div class="skill-name"><%=skill.name%>
+				<div class="skill-rating"><%= skill_badge(skill.person_has_skills.person_attributes(@developer.id).rating) %></div>
+				</div>
+				<%end%>
+			   </div>
+			</div>
+			<%end%>
+			<%unless @person_mobile_skill.empty?%>
+			<div class="skills-container">
+				<h5>Mobile</h5>
+				<div id="framework-skill">
+				<% @person_mobile_skill.each do |skill|%>
+				<div class="skill-name"><%=skill.name%>
+				<div class="skill-rating"><%= skill_badge(skill.person_has_skills.person_attributes(@developer.id).rating) %></div>
+				</div>
+				<%end%>
+			   </div>
+			</div>
+			<%end%>
+		</div>
+	</div>
+</div>	

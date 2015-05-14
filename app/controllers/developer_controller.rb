@@ -55,7 +55,48 @@ class DeveloperController < ApplicationController
     unless current_user.admin?
       redirect_to :back, :alert => "Access denied."
     end
+    respond_to do |format|
+        format.html {render :action => :show}
+        format.pdf { 
+          render pdf: "developer_profile",template:'developer/developer_profile.pdf.erb',show_as_html: params[:debug]
+        }
+      end
   end
+
+  def developer_profile
+    
+    @developer = Person.find(params[:id])
+    unless params[:rating].empty?
+    
+    @person_language_skill = @developer.person_language_skill.where('rating >= ?', params[:rating])
+    @person_framework_skill = @developer.person_framework_skill.where('rating >= ?', params[:rating])
+    @person_data_skill = @developer.person_data_skill.where('rating >= ?', params[:rating])
+    @person_mobile_skill = @developer.person_mobile_skill.where('rating >= ?', params[:rating])
+    else
+    @person_language_skill = @developer.person_language_skill
+    @person_framework_skill = @developer.person_framework_skill
+    @person_data_skill = @developer.person_data_skill
+    @person_mobile_skill = @developer.person_mobile_skill
+    end 
+
+    unless params[:start_date].empty?
+      @developer_project =  @developer.person_has_projects.where('start_date >= ? ',params[:start_date])
+      else
+      @developer_project =  @developer.person_has_projects  
+    end
+    
+    
+    respond_to do |format|
+      format.pdf { 
+             render pdf: "#{@developer.full_name}_profile",
+             disposition: 'attachment',
+             template:'developer/developer_profile.pdf.erb',
+             save_to_file: Rails.root.join('public/assets/pdf', "#{@developer.full_name}_profile.pdf")
+             
+      }
+    end  
+  end  
+
 
   def edit_skill
     @developer_skill = PersonHasSkill.find(params[:person_has_skill_id])
@@ -126,7 +167,6 @@ class DeveloperController < ApplicationController
     if @developer_skill.save
         flash.now[:notice] = "Skill Association Created!"
     else
-     flash.now[:error] = "note can't be null"
      render :json => @developer_skill.errors, :status => 500
     end  
   end  
@@ -151,13 +191,11 @@ class DeveloperController < ApplicationController
   def delete_developer_skill
     developer_skill = PersonHasSkill.find(params[:person_has_skill])
     developer_skill.destroy
-    flash[:notice] = "delete developer skill"
   end  
 
   def delete_developer_project
     developer_project = PersonHasProject.find(params[:person_has_project])
     developer_project.destroy
-    flash[:notice] = "delete developer skill"
   end
     
   private

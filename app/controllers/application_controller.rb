@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
   private
   def set_current_project
     params[:person_has_project][:current_project] = true if params[:person_has_project][:finish_date].to_date > Date.today
-    params[:person_has_project][:current_project] = false unless params[:person_has_project][:finish_date].to_date > Date.today
+    params[:person_has_project][:current_project] = false 
   end
 end

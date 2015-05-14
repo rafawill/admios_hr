@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get "new_developer_project"
       post "create_developer_project"
       post "delete_developer_project"
+      post "developer_profile"
     end
   end  
 
